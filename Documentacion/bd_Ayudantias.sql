@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     30-11-2017 17:35:59                          */
+/* Created on:     30-11-2017 17:51:00                          */
 /*==============================================================*/
 
 
@@ -17,8 +17,6 @@ drop table if exists AYUDANTIA;
 drop table if exists BLOQUE;
 
 drop table if exists CALIFICACION;
-
-drop table if exists CARRERA;
 
 drop table if exists EVALUACIONES;
 
@@ -41,6 +39,8 @@ drop table if exists TIPO_SALA;
 drop table if exists TUTOR;
 
 drop table if exists TUTORIA;
+
+drop table if exists USUARIO;
 
 /*==============================================================*/
 /* Table: ALUMNO                                                */
@@ -84,6 +84,7 @@ create table AYUDANTE
    NOMBRE_AYUDANTE      varchar(1000),
    APELLIDO_AYUDANTE    varchar(1000),
    CORREO_AYUDANTE      varchar(1000),
+   RUT_AYUDANTE         int,
    primary key (ID_AYUDANTE)
 );
 
@@ -116,20 +117,6 @@ create table CALIFICACION
    ID_EVALUACION        int not null,
    ID_ALUMNO            int not null,
    primary key (ID_EVALUACION, ID_ALUMNO)
-);
-
-/*==============================================================*/
-/* Table: CARRERA                                               */
-/*==============================================================*/
-create table CARRERA
-(
-   ID_CARRERA           int not null,
-   ID_MODULO            int not null,
-   NOMBRE_CARRERA       varchar(1000),
-   NOMBRE_DIRECTOR      varchar(1000),
-   TELEFONO_CARRERA     varchar(1000),
-   ATTRIBUTE_12         varchar(1000),
-   primary key (ID_CARRERA)
 );
 
 /*==============================================================*/
@@ -188,6 +175,7 @@ create table PROFESOR
    NOMBRE_PROFESOR      varchar(1000),
    APELLIDO_PROFESOR    varchar(1000),
    CORREO_PROFESOR      varchar(1000) not null,
+   RUT_PROFESOR         int,
    primary key (ID_PROFESOR)
 );
 
@@ -242,6 +230,7 @@ create table TUTOR
    NOMBRE_TUTOR         varchar(1000),
    APELLIDO_TUTOR       varchar(1000),
    CORREO_TUTOR         varchar(1000),
+   RUT_TUTOR            int,
    primary key (ID_TUTOR)
 );
 
@@ -255,6 +244,19 @@ create table TUTORIA
    CANTIDAD             int,
    DESCRIPCION          varchar(1000),
    primary key (ID_TUTORIA)
+);
+
+/*==============================================================*/
+/* Table: USUARIO                                               */
+/*==============================================================*/
+create table USUARIO
+(
+   ID_USUARIO           int not null,
+   ID_MODULO            int not null,
+   CONTRASENA           char(1000),
+   CATEGORIA            int,
+   RUT_USUARIO          int,
+   primary key (ID_USUARIO)
 );
 
 alter table ASISTE add constraint FK_ASISTE foreign key (ID_ALUMNO)
@@ -277,9 +279,6 @@ alter table CALIFICACION add constraint FK_CALIFICACION foreign key (ID_EVALUACI
 
 alter table CALIFICACION add constraint FK_CALIFICACION2 foreign key (ID_ALUMNO)
       references ALUMNO (ID_ALUMNO) on delete restrict on update restrict;
-
-alter table CARRERA add constraint FK_RELATIONSHIP_9 foreign key (ID_MODULO)
-      references MODULO (ID_MODULO) on delete restrict on update restrict;
 
 alter table EVALUACIONES add constraint FK_RELATIONSHIP_5 foreign key (ID_PROFESOR)
       references PROFESOR (ID_PROFESOR) on delete restrict on update restrict;
@@ -310,4 +309,7 @@ alter table SECCION add constraint FK_RELATIONSHIP_11 foreign key (ID_AYUDANTIA)
 
 alter table TUTORIA add constraint FK_RELATIONSHIP_14 foreign key (ID_TUTOR)
       references TUTOR (ID_TUTOR) on delete restrict on update restrict;
+
+alter table USUARIO add constraint FK_RELATIONSHIP_9 foreign key (ID_MODULO)
+      references MODULO (ID_MODULO) on delete restrict on update restrict;
 
