@@ -54,12 +54,16 @@ public class DatabaseConector {
         }
     }
     
-    public ResultSet getTable(String tableName){
-        return executeQuery("select * from " + tableName);
+    public ResultSet getTable(Tables table){
+        return executeQuery("select * from " + table.getDatabaseName());
     }
     
-    public boolean putInTable(String table, String parameters, String values){
-        return executeUpdate("Insert into " + table + "(" + parameters + ") values (" + values + ")");
+    public ResultSet getTable(Tables table, String conditions) {
+        return executeQuery("select * from " + table.getDatabaseName() + " where " + conditions);
+    }
+    
+    public boolean putInTable(Tables table, String values){
+        return executeUpdate("Insert into " + table.getDatabaseName() + "(" + table.getDatabaseParameters() + ") values (" + values + ")");
     }
     
     public void close(){

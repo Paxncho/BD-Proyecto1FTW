@@ -12,6 +12,7 @@ public class Menu {
         System.out.println("3) Crear nuevo Modulo");
         System.out.println("4) Mostrar Modulos en Pantalla");
         System.out.println("5) Mostrar Alumnos de un Modulo");
+        System.out.println("6) Asignar Alumno a Modulo");
         System.out.println("0) Salir");
     }
 }

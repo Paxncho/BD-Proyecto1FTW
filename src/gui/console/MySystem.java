@@ -5,9 +5,8 @@ import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sql.DatabaseConector;
+import sql.Tables;
 
 /**
  * @author Pencho
@@ -62,6 +61,7 @@ public class MySystem {
                 case 3: createModulo(); break;
                 case 4: printModulos(); break;
                 case 5: printAlumnosFromModulo(); break;
+                case 6: asignarAlumnoAModulo(); break;
             }
             
         }while (option != 0);
@@ -70,7 +70,7 @@ public class MySystem {
     }
     
     public void printAlumnos(){
-        ResultSet result = this.db.getTable("alumno");
+        ResultSet result = this.db.getTable(Tables.ALUMNO);
         
         try {
             printAlumnos(result);            
@@ -95,11 +95,9 @@ public class MySystem {
     }
     
     public void insertAlumno(int id, String nombre, String apellido, int matricula, String mail){
-        String values = id + ", \"" + nombre + "\", \"" + apellido + "\", " + matricula + ", \"" + mail + "\"";
-        String parameters = "IdAlumno, NombreAlumno, ApellidoAlumno, MatriculaAlumno, CorreoAlumno";
-        String table = "alumno";
+        String values = id + ", \"" + nombre + "\", \"" + apellido + "\", " + matricula + ", \"" + mail + "\"";        
         
-        if (this.db.putInTable(table, parameters, values))
+        if (this.db.putInTable(Tables.ALUMNO, values))
             System.out.println("Alumno Ingresado Correctamente");
         else
             System.out.println("Error ingresando el Alumno");
@@ -118,20 +116,18 @@ public class MySystem {
     
     public void insertModulo(int id, int semestre, String nombre){
         String values = id + ", " + semestre + ", \"" + nombre + "\"";
-        String parameters = "IdModulo, SEMESTRE, NombreModulo";
-        String table = "modulo";
         
-        if (this.db.putInTable(table, parameters, values))
+        if (this.db.putInTable(Tables.MODULO, values))
             System.out.println("Modulo creado correctamente");
         else
             System.out.println("Error creando el modulo");
     }
     
     public void printModulos(){
-        ResultSet result = this.db.getTable("modulo");
+        ResultSet result = this.db.getTable(Tables.MODULO);
         
         System.out.println("MODULOS\n");
-        
+                
         try {
             while (result.next()){
                 System.out.println("Id: " + result.getInt("IdModulo"));
@@ -173,9 +169,59 @@ public class MySystem {
 
     public void asignarAlumnoAModulo(){
         
+        printModulos();
+        System.out.print("Ingrese el Id del Modulo: ");
+        int idModulo = Integer.parseInt(this.scanner.nextLine());
+        
+        printAlumnos();
+        System.out.print("Ingrese el Id del Alumno");
+        int idAlumno = Integer.parseInt(this.scanner.nextLine());
+        
+        try {
+            ResultSet tipoEvaluacion = this.db.getTable(Tables.TIPO_EVALUACION, "IdTipoevaluacion = 0");
+            
+            if (!tipoEvaluacion.isBeforeFirst()){ //TipoEvaluacion = No Rows
+                String values = "0, \"Asistencia\", NULL";
+                this.db.putInTable(Tables.TIPO_EVALUACION, values);
+            }
+            
+            ResultSet profesor = this.db.getTable(Tables.PROFESOR, "IdProfesor = 0");
+            
+            if (!profesor.isBeforeFirst()){
+                String values = "0, \"Admin\", NULL, NULL";
+                this.db.putInTable(Tables.PROFESOR, values);
+            }
+            
+            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACIONES);
+            evaluaciones.last();
+            int idEvaluacion = evaluaciones.getRow();
+            
+            String values = idEvaluacion + ", 0, " + "0" + ", " + idModulo + ", NULL, NULL";
+            this.db.putInTable(Tables.EVALUACIONES, values);
+            
+            values = idEvaluacion + ", " + idAlumno + ", 0";            
+            this.db.putInTable(Tables.CALIFICACION, values);
+        } catch (Exception e){
+
+        }
+        
+        //CHECK TIPO_EVALUACION
+        // -> CREAR TIPO_EVALUACION = ASISTENCIA
+        // CHECK PROFESOR
+        // -> CREAR PROFESOR = "ADMIN"
+        // CREAR EVALUACION CON ASISTENCIA, ADMIN, MODULO
+        // CREAR CALIFICACION CON EVALUACION Y ALUMNO
+        
+        
     }
     
     private void printAlumnos(ResultSet result) throws SQLException {
+        if (!result.isBeforeFirst()){
+            System.out.println("No hay alumnos inscritos.");
+            System.out.println("~~~~~~~~~~~~~~~");
+            return;
+        }
+        
         System.out.println("ALUMNOS\n");
             
             while(result.next()){
