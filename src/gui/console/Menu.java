@@ -1,0 +1,14 @@
+package gui.console;
+
+/**
+ * @author Pencho
+ * @version 1.0, Last modification: 30-11-2017
+ */
+
+public class Menu {
+    public static void MainMenu(){
+        System.out.println("1) Mostrar Alumnos en Pantalla");
+        System.out.println("2) Ingresar un Alumno al Servidor");
+        System.out.println("0) Salir");
+    }
+}

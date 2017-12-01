@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Pencho
@@ -12,7 +14,7 @@ import java.sql.Statement;
 
 public class DatabaseConector {
 
-    private static String localpath = "jdbc:mysql://localhost/";
+    private static String localpath = "jdbc:mysql://localhost:3306/";
     private static String parameters = "?autoReconnect=true&useSSL=false";
     
     private Connection conexion;
@@ -27,7 +29,10 @@ public class DatabaseConector {
             conexion = java.sql.DriverManager.getConnection(localpath + databaseName + parameters, user, pass);
             statement = conexion.createStatement();
         } catch (SQLException ex){
-            
+            System.out.println("SQL - Error with the conection\n" + (localpath + databaseName + parameters + "|" + user + "|" +pass));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
     
@@ -35,15 +40,17 @@ public class DatabaseConector {
         try {
             return statement.executeQuery(query);
         } catch (SQLException ex) {
+            System.out.println("SQL - Error with the Query");
             return null;
         }
     }
     
-    public void executeUpdate(String update){
+    public boolean executeUpdate(String update){
         try {
             statement.executeUpdate(update);
+            return true;
         } catch (SQLException ex){
-            
+            return false;
         }
     }
     

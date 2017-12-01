@@ -1,0 +1,21 @@
+FUNCIONALIDADES:
+
+Dirigido a Profes + Ayudantes/Tutores
+
+Todos:
+* Ver las Evaluaciones
+* Ver info alumnos
+
+Profesor:
+* Crear Modulos/Ayudantias/Tutorias
+* Asignar Ayudantes/Tutores
+* Poner Notas
+* Crear Evaluaciones
+* Asignar Alumnos a Modulos/Ayudantias/Tutorias
+
+Ayudante:
+* Asignar Alumnos a Ayudantia/Tutoria
+* Crear Evaluaciones
+
+Tutor:
+* Eliminar Alumnos de Tutorias
