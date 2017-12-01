@@ -28,10 +28,10 @@ public class DatabaseConector {
         try{
             conexion = java.sql.DriverManager.getConnection(localpath + databaseName + parameters, user, pass);
             statement = conexion.createStatement();
+            
+            System.out.println("Connection Successful!");
         } catch (SQLException ex){
-            System.out.println("SQL - Error with the conection\n" + (localpath + databaseName + parameters + "|" + user + "|" +pass));
-            ex.printStackTrace();
-        } catch (Exception ex) {
+            System.out.println("SQL - Error with the connection\n" + (localpath + databaseName + parameters + "|" + user + "|" +pass));
             ex.printStackTrace();
         }
     }
@@ -52,6 +52,14 @@ public class DatabaseConector {
         } catch (SQLException ex){
             return false;
         }
+    }
+    
+    public ResultSet getTable(String tableName){
+        return executeQuery("select * from " + tableName);
+    }
+    
+    public boolean putInTable(String table, String parameters, String values){
+        return executeUpdate("Insert into " + table + "(" + parameters + ") values (" + values + ")");
     }
     
     public void close(){
