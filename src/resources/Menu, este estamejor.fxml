@@ -33,7 +33,7 @@
          <top>
             <ImageView fitHeight="88.0" fitWidth="549.0" pickOnBounds="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../../BANER_ENCUESTA.jpg" />
+                  <Image url="@../../BANER_ENCUESTA.jpg" />
                </image>
             </ImageView>
          </top>
