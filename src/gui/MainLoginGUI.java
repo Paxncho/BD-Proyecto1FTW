@@ -26,7 +26,7 @@ public class MainLoginGUI extends Stage{
             
             //Load the fxml
             Parent root = fxml.load();
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 600, 420);
             
             super.setScene(scene);
         } catch (IOException ex) {

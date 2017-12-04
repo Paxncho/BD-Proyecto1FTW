@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     public static void main(String[] args) {
-        MySystem system = new MySystem();
-        system.Main();
+//        MySystem system = new MySystem();
+//        system.Main();
         
-//        launch(args);
+        launch(args);
     }
     
     @Override
