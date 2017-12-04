@@ -5,7 +5,7 @@
  */
 
 package gui;
-import controllers.MainLoginController ;
+import controllers.MainCuerpoModuloController ;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +29,7 @@ public class MainCuepoModuloGUI extends Stage {
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaCuerpoModulo.fxml"));
             
             //Instance the controller and set to the fxml
-            MainLoginController controllerModuloCuerpo = new MainLoginController();
+            MainCuerpoModuloController controllerModuloCuerpo = new MainCuerpoModuloController();
             fxml.setController(controllerModuloCuerpo);
             
             //Load the fxml

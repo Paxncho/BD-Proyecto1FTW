@@ -11,23 +11,33 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableView;
 
 /**
  *
- * @author Pencho
+ * @author Fernanda
  */
-public class MainController implements Initializable {
-    
+public class MainModuloController implements Initializable {
+
     @FXML
+    private TableView horario;
+    @FXML
+    private TableView evaluacion;
+    @FXML
+    private TableView alumno;
+    @FXML
+    private TreeTableView  modulo;
     
- 
+    
     private void handleButtonAction(ActionEvent event) {
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
 }

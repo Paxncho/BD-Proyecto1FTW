@@ -35,7 +35,7 @@ public class Controller extends Stage {
             
             super.setScene(scene);
         } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

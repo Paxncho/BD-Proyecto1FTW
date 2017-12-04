@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gui;
-import controllers.MainLoginController ;
+import controllers.MainAlumnoController  ;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +27,7 @@ public class MainAlumnoGUI extends Stage{
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaAlumno.fxml"));
             
             //Instance the controller and set to the fxml
-            MainLoginController controllerAlumno = new MainLoginController();
+            MainAlumnoController  controllerAlumno = new MainAlumnoController ();
             fxml.setController(controllerAlumno);
             
             //Load the fxml
