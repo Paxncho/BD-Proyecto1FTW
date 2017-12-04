@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase SQL Anywhere 12                       */
-/* Created on:     04-12-2017 11:53:24                          */
+/* Created on:     04-12-2017 12:33:50                          */
 /*==============================================================*/
 
 
@@ -40,12 +40,12 @@ if exists(select 1 from sys.sysforeignkey where role='FK_AYUDANTE_AYUDANTEA_AYUD
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_CALIFICA_CALIFICAC_EVALUACI') then
-    alter table CALIFICACION
+    alter table Calificacion
        delete foreign key FK_CALIFICA_CALIFICAC_EVALUACI
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_CALIFICA_CALIFICAC_ALUMNO') then
-    alter table CALIFICACION
+    alter table Calificacion
        delete foreign key FK_CALIFICA_CALIFICAC_ALUMNO
 end if;
 
@@ -60,17 +60,17 @@ if exists(select 1 from sys.sysforeignkey where role='FK_EVALUACI_RELATIONS_TIPO
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_HORARIO_HORARIOAY_SECCION') then
-    alter table HORARIO
+    alter table Horario
        delete foreign key FK_HORARIO_HORARIOAY_SECCION
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_HORARIO_RELATIONS_SALA') then
-    alter table HORARIO
+    alter table Horario
        delete foreign key FK_HORARIO_RELATIONS_SALA
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_HORARIO_RELATIONS_MODULO') then
-    alter table HORARIO
+    alter table Horario
        delete foreign key FK_HORARIO_RELATIONS_MODULO
 end if;
 
@@ -94,29 +94,25 @@ if exists(select 1 from sys.sysforeignkey where role='FK_PROFESOR_PROFESORA_MODU
        delete foreign key FK_PROFESOR_PROFESORA_MODULO
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_SALA_RELATIONS_TIPOSALA') then
-    alter table SALA
-       delete foreign key FK_SALA_RELATIONS_TIPOSALA
-end if;
-
 if exists(select 1 from sys.sysforeignkey where role='FK_SECCION_RELATIONS_AYUDANTI') then
     alter table SECCION
        delete foreign key FK_SECCION_RELATIONS_AYUDANTI
 end if;
 
+if exists(select 1 from sys.sysforeignkey where role='FK_SALA_RELATIONS_TIPOSALA') then
+    alter table Sala
+       delete foreign key FK_SALA_RELATIONS_TIPOSALA
+end if;
+
 if exists(select 1 from sys.sysforeignkey where role='FK_TUTORIA_RELATIONS_TUTOR') then
-    alter table TUTORIA
+    alter table Tutoria
        delete foreign key FK_TUTORIA_RELATIONS_TUTOR
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_USUARIO_RELATIONS_MODULO') then
-    alter table USUARIO
-       delete foreign key FK_USUARIO_RELATIONS_MODULO
+if exists(select 1 from sys.sysforeignkey where role='FK_USUARIO_RELATIONS_TIPOUSUA') then
+    alter table Usuario
+       delete foreign key FK_USUARIO_RELATIONS_TIPOUSUA
 end if;
-
-drop index if exists ALUMNO.AlumnoPk;
-
-drop table if exists ALUMNO;
 
 drop index if exists AYUDANTE.AyudantePk;
 
@@ -127,6 +123,10 @@ drop index if exists AYUDANTIA.Relationship10Fk;
 drop index if exists AYUDANTIA.AyudantiaPk;
 
 drop table if exists AYUDANTIA;
+
+drop index if exists Alumno.AlumnoPk;
+
+drop table if exists Alumno;
 
 drop index if exists AsistenciaAClases.Asistenciaaclases2Fk;
 
@@ -156,13 +156,13 @@ drop index if exists BLOQUE.BloquePk;
 
 drop table if exists BLOQUE;
 
-drop index if exists CALIFICACION.Calificacion2Fk;
+drop index if exists Calificacion.Calificacion2Fk;
 
-drop index if exists CALIFICACION.CalificacionFk;
+drop index if exists Calificacion.CalificacionFk;
 
-drop index if exists CALIFICACION.CalificacionPk;
+drop index if exists Calificacion.CalificacionPk;
 
-drop table if exists CALIFICACION;
+drop table if exists Calificacion;
 
 drop index if exists Evaluacion.Relationship7Fk;
 
@@ -172,15 +172,15 @@ drop index if exists Evaluacion.EvaluacionesPk;
 
 drop table if exists Evaluacion;
 
-drop index if exists HORARIO.Relationship16Fk;
+drop index if exists Horario.Relationship16Fk;
 
-drop index if exists HORARIO.HorarioayudantiaFk;
+drop index if exists Horario.HorarioayudantiaFk;
 
-drop index if exists HORARIO.Relationship1Fk;
+drop index if exists Horario.Relationship1Fk;
 
-drop index if exists HORARIO.HorarioPk;
+drop index if exists Horario.HorarioPk;
 
-drop table if exists HORARIO;
+drop table if exists Horario;
 
 drop index if exists HorarioBloque.Horariobloque2Fk;
 
@@ -190,9 +190,9 @@ drop index if exists HorarioBloque.HorariobloquePk;
 
 drop table if exists HorarioBloque;
 
-drop index if exists MODULO.ModuloPk;
+drop index if exists Modulo.ModuloPk;
 
-drop table if exists MODULO;
+drop table if exists Modulo;
 
 drop index if exists PROFESOR.ProfesorPk;
 
@@ -206,27 +206,21 @@ drop index if exists ProfesorACargo.ProfesoracargoPk;
 
 drop table if exists ProfesorACargo;
 
-drop index if exists SALA.Relationship2Fk;
-
-drop index if exists SALA.SalaPk;
-
-drop table if exists SALA;
-
 drop index if exists SECCION.Relationship11Fk;
 
 drop index if exists SECCION.SeccionPk;
 
 drop table if exists SECCION;
 
+drop index if exists Sala.Relationship2Fk;
+
+drop index if exists Sala.SalaPk;
+
+drop table if exists Sala;
+
 drop index if exists TUTOR.TutorPk;
 
 drop table if exists TUTOR;
-
-drop index if exists TUTORIA.Relationship14Fk;
-
-drop index if exists TUTORIA.TutoriaPk;
-
-drop table if exists TUTORIA;
 
 drop index if exists TipoEvaluacion.TipoevaluacionPk;
 
@@ -236,30 +230,21 @@ drop index if exists TipoSala.TiposalaPk;
 
 drop table if exists TipoSala;
 
-drop index if exists USUARIO.Relationship9Fk;
+drop index if exists TipoUsuario.TipousuarioPk;
 
-drop index if exists USUARIO.UsuarioPk;
+drop table if exists TipoUsuario;
 
-drop table if exists USUARIO;
+drop index if exists Tutoria.Relationship14Fk;
 
-/*==============================================================*/
-/* Table: ALUMNO                                                */
-/*==============================================================*/
-create table ALUMNO 
-(
-   MatriculaAlumno      integer                        not null,
-   NombreAlumno         varchar(255)                   not null,
-   ApellidoAlumno       varchar(255)                   null,
-   CorreoAlumno         varchar(255)                   null,
-   constraint PK_ALUMNO primary key (MatriculaAlumno)
-);
+drop index if exists Tutoria.TutoriaPk;
 
-/*==============================================================*/
-/* Index: AlumnoPk                                              */
-/*==============================================================*/
-create unique index AlumnoPk on ALUMNO (
-MatriculaAlumno ASC
-);
+drop table if exists Tutoria;
+
+drop index if exists Usuario.Relationship17Fk;
+
+drop index if exists Usuario.UsuarioPk;
+
+drop table if exists Usuario;
 
 /*==============================================================*/
 /* Table: AYUDANTE                                              */
@@ -302,6 +287,25 @@ IdAyudantia ASC
 /*==============================================================*/
 create index Relationship10Fk on AYUDANTIA (
 IdModulo ASC
+);
+
+/*==============================================================*/
+/* Table: Alumno                                                */
+/*==============================================================*/
+create table Alumno 
+(
+   MatriculaAlumno      integer                        not null,
+   NombreAlumno         varchar(255)                   not null,
+   ApellidoAlumno       varchar(255)                   null,
+   CorreoAlumno         varchar(255)                   null,
+   constraint PK_ALUMNO primary key (MatriculaAlumno)
+);
+
+/*==============================================================*/
+/* Index: AlumnoPk                                              */
+/*==============================================================*/
+create unique index AlumnoPk on Alumno (
+MatriculaAlumno ASC
 );
 
 /*==============================================================*/
@@ -419,19 +423,21 @@ IdBloque ASC
 );
 
 /*==============================================================*/
-/* Table: CALIFICACION                                          */
+/* Table: Calificacion                                          */
 /*==============================================================*/
-create table CALIFICACION 
+create table Calificacion 
 (
    IdEvaluacion         integer                        not null,
    MatriculaAlumno      integer                        not null,
+   Nota                 integer                        null,
+   Comentarios          long varchar                   null,
    constraint PK_CALIFICACION primary key clustered (IdEvaluacion, MatriculaAlumno)
 );
 
 /*==============================================================*/
 /* Index: CalificacionPk                                        */
 /*==============================================================*/
-create unique clustered index CalificacionPk on CALIFICACION (
+create unique clustered index CalificacionPk on Calificacion (
 IdEvaluacion ASC,
 MatriculaAlumno ASC
 );
@@ -439,14 +445,14 @@ MatriculaAlumno ASC
 /*==============================================================*/
 /* Index: CalificacionFk                                        */
 /*==============================================================*/
-create index CalificacionFk on CALIFICACION (
+create index CalificacionFk on Calificacion (
 IdEvaluacion ASC
 );
 
 /*==============================================================*/
 /* Index: Calificacion2Fk                                       */
 /*==============================================================*/
-create index Calificacion2Fk on CALIFICACION (
+create index Calificacion2Fk on Calificacion (
 MatriculaAlumno ASC
 );
 
@@ -459,7 +465,7 @@ create table Evaluacion
    IdTipoEvaluacion     integer                        not null,
    IdModulo             integer                        not null,
    FechaEvaluacion      date                           null,
-   CONTENIDO            long varchar                   null,
+   Contenido            long varchar                   null,
    constraint PK_EVALUACION primary key (IdEvaluacion)
 );
 
@@ -485,43 +491,43 @@ IdTipoEvaluacion ASC
 );
 
 /*==============================================================*/
-/* Table: HORARIO                                               */
+/* Table: Horario                                               */
 /*==============================================================*/
-create table HORARIO 
+create table Horario 
 (
    IdHorario            integer                        not null,
    IdSala               integer                        not null,
    IdModulo             integer                        null,
    IdSeccion            integer                        null,
-   DIA                  date                           null,
+   Dia                  date                           null,
    constraint PK_HORARIO primary key (IdHorario)
 );
 
 /*==============================================================*/
 /* Index: HorarioPk                                             */
 /*==============================================================*/
-create unique index HorarioPk on HORARIO (
+create unique index HorarioPk on Horario (
 IdHorario ASC
 );
 
 /*==============================================================*/
 /* Index: Relationship1Fk                                       */
 /*==============================================================*/
-create index Relationship1Fk on HORARIO (
+create index Relationship1Fk on Horario (
 IdSala ASC
 );
 
 /*==============================================================*/
 /* Index: HorarioayudantiaFk                                    */
 /*==============================================================*/
-create index HorarioayudantiaFk on HORARIO (
+create index HorarioayudantiaFk on Horario (
 IdSeccion ASC
 );
 
 /*==============================================================*/
 /* Index: Relationship16Fk                                      */
 /*==============================================================*/
-create index Relationship16Fk on HORARIO (
+create index Relationship16Fk on Horario (
 IdModulo ASC
 );
 
@@ -558,20 +564,20 @@ IdBloque ASC
 );
 
 /*==============================================================*/
-/* Table: MODULO                                                */
+/* Table: Modulo                                                */
 /*==============================================================*/
-create table MODULO 
+create table Modulo 
 (
    IdModulo             integer                        not null,
    NombreModulo         varchar(255)                   not null,
-   SEMESTRE             varchar(255)                   null,
+   Semestre             varchar(255)                   null,
    constraint PK_MODULO primary key (IdModulo)
 );
 
 /*==============================================================*/
 /* Index: ModuloPk                                              */
 /*==============================================================*/
-create unique index ModuloPk on MODULO (
+create unique index ModuloPk on Modulo (
 IdModulo ASC
 );
 
@@ -627,32 +633,6 @@ IdModulo ASC
 );
 
 /*==============================================================*/
-/* Table: SALA                                                  */
-/*==============================================================*/
-create table SALA 
-(
-   IdSala               integer                        not null,
-   IdTiposala           integer                        not null,
-   NombreSala           varchar(255)                   not null,
-   CAPACIDAD            integer                        not null,
-   constraint PK_SALA primary key (IdSala)
-);
-
-/*==============================================================*/
-/* Index: SalaPk                                                */
-/*==============================================================*/
-create unique index SalaPk on SALA (
-IdSala ASC
-);
-
-/*==============================================================*/
-/* Index: Relationship2Fk                                       */
-/*==============================================================*/
-create index Relationship2Fk on SALA (
-IdTiposala ASC
-);
-
-/*==============================================================*/
 /* Table: SECCION                                               */
 /*==============================================================*/
 create table SECCION 
@@ -678,6 +658,32 @@ IdAyudantia ASC
 );
 
 /*==============================================================*/
+/* Table: Sala                                                  */
+/*==============================================================*/
+create table Sala 
+(
+   IdSala               integer                        not null,
+   IdTiposala           integer                        not null,
+   NombreSala           varchar(255)                   not null,
+   Capacidad            integer                        not null,
+   constraint PK_SALA primary key (IdSala)
+);
+
+/*==============================================================*/
+/* Index: SalaPk                                                */
+/*==============================================================*/
+create unique index SalaPk on Sala (
+IdSala ASC
+);
+
+/*==============================================================*/
+/* Index: Relationship2Fk                                       */
+/*==============================================================*/
+create index Relationship2Fk on Sala (
+IdTiposala ASC
+);
+
+/*==============================================================*/
 /* Table: TUTOR                                                 */
 /*==============================================================*/
 create table TUTOR 
@@ -693,32 +699,6 @@ create table TUTOR
 /* Index: TutorPk                                               */
 /*==============================================================*/
 create unique index TutorPk on TUTOR (
-RutTutor ASC
-);
-
-/*==============================================================*/
-/* Table: TUTORIA                                               */
-/*==============================================================*/
-create table TUTORIA 
-(
-   IdTutoria            integer                        not null,
-   RutTutor             integer                        not null,
-   CANTIDAD             integer                        null,
-   Descripcion          long varchar                   null,
-   constraint PK_TUTORIA primary key (IdTutoria)
-);
-
-/*==============================================================*/
-/* Index: TutoriaPk                                             */
-/*==============================================================*/
-create unique index TutoriaPk on TUTORIA (
-IdTutoria ASC
-);
-
-/*==============================================================*/
-/* Index: Relationship14Fk                                      */
-/*==============================================================*/
-create index Relationship14Fk on TUTORIA (
 RutTutor ASC
 );
 
@@ -757,58 +737,100 @@ IdTiposala ASC
 );
 
 /*==============================================================*/
-/* Table: USUARIO                                               */
+/* Table: TipoUsuario                                           */
 /*==============================================================*/
-create table USUARIO 
+create table TipoUsuario 
+(
+   IdTipoUsuario        integer                        not null,
+   NombreTipo           varchar(255)                   not null,
+   constraint PK_TIPOUSUARIO primary key (IdTipoUsuario)
+);
+
+/*==============================================================*/
+/* Index: TipousuarioPk                                         */
+/*==============================================================*/
+create unique index TipousuarioPk on TipoUsuario (
+IdTipoUsuario ASC
+);
+
+/*==============================================================*/
+/* Table: Tutoria                                               */
+/*==============================================================*/
+create table Tutoria 
+(
+   IdTutoria            integer                        not null,
+   RutTutor             integer                        not null,
+   Cantidad             integer                        null,
+   Descripcion          long varchar                   null,
+   constraint PK_TUTORIA primary key (IdTutoria)
+);
+
+/*==============================================================*/
+/* Index: TutoriaPk                                             */
+/*==============================================================*/
+create unique index TutoriaPk on Tutoria (
+IdTutoria ASC
+);
+
+/*==============================================================*/
+/* Index: Relationship14Fk                                      */
+/*==============================================================*/
+create index Relationship14Fk on Tutoria (
+RutTutor ASC
+);
+
+/*==============================================================*/
+/* Table: Usuario                                               */
+/*==============================================================*/
+create table Usuario 
 (
    RutUsuario           integer                        not null,
-   IdModulo             integer                        not null,
    Password             varchar(255)                   not null,
-   CATEGORIA            integer                        not null,
+   IdTipoUsuario        integer                        not null,
    constraint PK_USUARIO primary key (RutUsuario)
 );
 
 /*==============================================================*/
 /* Index: UsuarioPk                                             */
 /*==============================================================*/
-create unique index UsuarioPk on USUARIO (
+create unique index UsuarioPk on Usuario (
 RutUsuario ASC
 );
 
 /*==============================================================*/
-/* Index: Relationship9Fk                                       */
+/* Index: Relationship17Fk                                      */
 /*==============================================================*/
-create index Relationship9Fk on USUARIO (
-IdModulo ASC
+create index Relationship17Fk on Usuario (
+IdTipoUsuario ASC
 );
 
 alter table AYUDANTIA
    add constraint FK_AYUDANTI_RELATIONS_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
+      references Modulo (IdModulo)
       on update cascade
       on delete restrict;
 
 alter table AsistenciaAClases
    add constraint FK_ASISTENC_ASISTENCI_ALUMNO foreign key (MatriculaAlumno)
-      references ALUMNO (MatriculaAlumno)
+      references Alumno (MatriculaAlumno)
       on update cascade
       on delete restrict;
 
 alter table AsistenciaAClases
    add constraint FK_ASISTENC_ASISTENCI_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
+      references Modulo (IdModulo)
       on update cascade
       on delete restrict;
 
 alter table AsistenciaTutoria
    add constraint FK_ASISTENC_ASISTENCI_ALUMNO foreign key (MatriculaAlumno)
-      references ALUMNO (MatriculaAlumno)
+      references Alumno (MatriculaAlumno)
       on update cascade
       on delete restrict;
 
 alter table AsistenciaTutoria
    add constraint FK_ASISTENC_ASISTENCI_TUTORIA foreign key (IdTutoria)
-      references TUTORIA (IdTutoria)
+      references Tutoria (IdTutoria)
       on update cascade
       on delete restrict;
 
@@ -824,21 +846,21 @@ alter table AyudanteACargo
       on update cascade
       on delete restrict;
 
-alter table CALIFICACION
+alter table Calificacion
    add constraint FK_CALIFICA_CALIFICAC_EVALUACI foreign key (IdEvaluacion)
       references Evaluacion (IdEvaluacion)
       on update cascade
       on delete restrict;
 
-alter table CALIFICACION
+alter table Calificacion
    add constraint FK_CALIFICA_CALIFICAC_ALUMNO foreign key (MatriculaAlumno)
-      references ALUMNO (MatriculaAlumno)
+      references Alumno (MatriculaAlumno)
       on update cascade
       on delete restrict;
 
 alter table Evaluacion
    add constraint FK_EVALUACI_RELATIONS_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
+      references Modulo (IdModulo)
       on update cascade
       on delete restrict;
 
@@ -848,27 +870,27 @@ alter table Evaluacion
       on update cascade
       on delete restrict;
 
-alter table HORARIO
+alter table Horario
    add constraint FK_HORARIO_HORARIOAY_SECCION foreign key (IdSeccion)
       references SECCION (IdSeccion)
       on update cascade
       on delete restrict;
 
-alter table HORARIO
+alter table Horario
    add constraint FK_HORARIO_RELATIONS_SALA foreign key (IdSala)
-      references SALA (IdSala)
+      references Sala (IdSala)
       on update cascade
       on delete restrict;
 
-alter table HORARIO
+alter table Horario
    add constraint FK_HORARIO_RELATIONS_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
+      references Modulo (IdModulo)
       on update cascade
       on delete restrict;
 
 alter table HorarioBloque
    add constraint FK_HORARIOB_HORARIOBL_HORARIO foreign key (IdHorario)
-      references HORARIO (IdHorario)
+      references Horario (IdHorario)
       on update cascade
       on delete restrict;
 
@@ -886,13 +908,7 @@ alter table ProfesorACargo
 
 alter table ProfesorACargo
    add constraint FK_PROFESOR_PROFESORA_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
-      on update cascade
-      on delete restrict;
-
-alter table SALA
-   add constraint FK_SALA_RELATIONS_TIPOSALA foreign key (IdTiposala)
-      references TipoSala (IdTiposala)
+      references Modulo (IdModulo)
       on update cascade
       on delete restrict;
 
@@ -902,15 +918,21 @@ alter table SECCION
       on update cascade
       on delete restrict;
 
-alter table TUTORIA
+alter table Sala
+   add constraint FK_SALA_RELATIONS_TIPOSALA foreign key (IdTiposala)
+      references TipoSala (IdTiposala)
+      on update cascade
+      on delete restrict;
+
+alter table Tutoria
    add constraint FK_TUTORIA_RELATIONS_TUTOR foreign key (RutTutor)
       references TUTOR (RutTutor)
       on update cascade
       on delete restrict;
 
-alter table USUARIO
-   add constraint FK_USUARIO_RELATIONS_MODULO foreign key (IdModulo)
-      references MODULO (IdModulo)
+alter table Usuario
+   add constraint FK_USUARIO_RELATIONS_TIPOUSUA foreign key (IdTipoUsuario)
+      references TipoUsuario (IdTipoUsuario)
       on update cascade
       on delete restrict;
 

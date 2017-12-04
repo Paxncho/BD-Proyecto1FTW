@@ -12,19 +12,17 @@ import java.util.logging.Logger;
 
 /**
  * @author Pencho
- * @version 1.0, Last modification: 17-11-2017
+ * @version 1.1, Last modification: 04-12-2017
  */
 
 public class DatabaseConector {
 
+    //Atributos relativos al usuario loggeado.
+    public static int rutConnected;
+    public static int typeConnected;
+    
+    //Atributos y metodos para el puente entre la base de datos y la app.
     private static DatabaseConector instance;
-    
-    private static String localpath = "jdbc:mysql://localhost:3306/";
-    private static String parameters = "?autoReconnect=true&useSSL=false";
-    
-    private Connection conexion;
-    private Statement statement;
-    
     private static DatabaseConector setInstance(){
         try {
             Scanner sc = new Scanner(new File("Database Connection.txt"));
@@ -46,15 +44,19 @@ public class DatabaseConector {
             return new DatabaseConector(dbName, user, pass);
         }
     }
-    
-    public static int rutConnected;
-    
     public static DatabaseConector getInstance(){
         if (instance == null)
             instance = setInstance();
         
         return instance;
     }
+    
+    //Atributos de la conexión a la base de datos
+    private static String localpath = "jdbc:mysql://localhost:3306/";
+    private static String parameters = "?autoReconnect=true&useSSL=false";
+    
+    private Connection conexion;
+    private Statement statement;
     
     public DatabaseConector(String databaseName){
         this(databaseName, "root", "admin");

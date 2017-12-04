@@ -13,20 +13,21 @@ public enum Tables {
     AYUDANTE_A_CARGO("ayudanteacargo", "IdAyudantia, RutAyudante"),
     AYUDANTIA ("ayudantia", "IdAyudantia, IdModulo"),
     BLOQUE("bloque", "IdBloque, HoraInicio, HoraTermino"),
-    CALIFICACION("calificacion", "IdEvaluacion, IdAlumno, NOTA"),
-    EVALUACION("evaluaciones", "IdEvaluacion, IdTipoevaluacion, IdProfesor, IdModulo, FechaEvaluacion, CONTENIDO"),
+    CALIFICACION("calificacion", "IdEvaluacion, MatriculaAlumno, Nota, Comentario"),
+    EVALUACION("evaluacion", "IdEvaluacion, IdTipoEvaluacion, IdModulo, FechaEvaluacion, Contenido"),
     HORARIO("horario", "IdHorario, IdSala, IdSeccion, DIA"),
     HORARIO_BLOQUE("horariobloque", "IdHorario, IdBloque"),
-    MODULO("modulo", "IdModulo, SEMESTRE, NombreModulo"),
-    PROFESOR("profesor", "IdProfesor, NombreProfesor, ApellidoProfesor, CorreoProfesor, RutProfesor"),
-    PROFESOR_A_CARGO("",""),
-    SALA("sala", "IdSala, IdTiposala, CAPACIDAD"),
+    MODULO("modulo", "IdModulo, NombreModulo, SEMESTRE"),
+    PROFESOR("profesor", "RutProfesor, NombreProfesor, ApellidoProfesor, CorreoProfesor"),
+    PROFESOR_A_CARGO("profesoracargo","RutProfesor, IdModulo"),
+    SALA("sala", "IdSala, IdTiposala, NombreSala, CAPACIDAD"),
     SECCION("seccion", "IdSeccion, IdAyudantia, NombreSeccion"),
-    TIPO_EVALUACION("tipoevaluacion", "IdTipoevaluacion, DESCRIPCION"),
-    TIPO_SALA("tiposala", "IdTiposala, DESCRIPCION"),
-    TUTOR("tutor", "IdTutor, NombreTutor, ApellidoTutor, CorreoTutor, RutTutor"),
-    TUTORIA("tutoria", "IdTutoria, IdTutor, CANTIDAD, DESCRIPCION"),
-    USUARIO("usuario", "IdUsuario, Rut, Contrasena, Permisos");
+    TIPO_EVALUACION("tipoevaluacion", "IdTipoEvaluacion, Descripcion"),
+    TIPO_SALA("tiposala", "IdTiposala, Descripcion"),
+    TIPO_USUARIO("tipousuario", "IdTipoUsuario, NombreTipo"),
+    TUTOR("tutor", "RutTutor, NombreTutor, ApellidoTutor, CorreoTutor"),
+    TUTORIA("tutoria", "IdTutoria, RutTutor, Cantidad, Descripcion"),
+    USUARIO("usuario", "RutUsuario, Password, IdTipoUsuario");
     
     private final String name;
     private final String parameters;

@@ -46,7 +46,7 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <ListView layoutX="-31.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" scaleX="0.5" scaleY="1.1" />
+            <ListView fx:id="profileList" layoutX="-31.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" scaleX="0.5" scaleY="1.1" />
          </children>
       </Pane>
       <Separator layoutX="159.0" layoutY="23.0" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import sql.DatabaseConector;
@@ -22,6 +23,7 @@ public class CuerpoModuloController implements Initializable  {
     
 //    @FXML private ListView informacion;
 //    @FXML private ScrollBar barra;
+    @FXML private ListView profileList;
     @FXML private TableView informacionModulos;
     @FXML private Button closeButton;
     
