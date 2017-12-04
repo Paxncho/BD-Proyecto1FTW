@@ -5,11 +5,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -25,14 +26,22 @@
                   <Font size="6.0" />
                </font>
             </Button>
-            <TreeView layoutX="25.0" layoutY="45.0" prefHeight="273.0" prefWidth="354.0" />
+            <TableView layoutX="25.0" layoutY="45.0" prefHeight="273.0" prefWidth="352.0">
+              <columns>
+                <TableColumn prefWidth="149.0" text="MODULO" />
+                <TableColumn minWidth="0.0" prefWidth="209.0" text="PROFESOR- ASISTENTE" />
+              </columns>
+            </TableView>
             <ScrollBar layoutX="370.0" layoutY="45.0" orientation="VERTICAL" prefHeight="273.0" prefWidth="14.0" />
          </children>
       </Pane>
       <Pane layoutX="23.0" layoutY="21.0" prefHeight="358.0" prefWidth="138.0">
          <children>
-            <Avatar layoutX="44.0" layoutY="45.0" radius="25.0" />
-            <ListView layoutX="-31.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0" scaleX="0.5" scaleY="1.1" />
+            <Avatar layoutX="29.0" layoutY="14.0" opacity="0.82" radius="40.0">
+               <image>
+                  <Image url="@../../Captura.JPG" />
+               </image></Avatar>
+            <ListView layoutX="-31.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" scaleX="0.5" scaleY="1.1" />
          </children>
       </Pane>
       <Separator layoutX="159.0" layoutY="23.0" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />
