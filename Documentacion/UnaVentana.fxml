@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
@@ -18,29 +20,50 @@
                <image>
                   <Image url="@../../../BANER_ENCUESTA.jpg" />
                </image>
+               <BorderPane.margin>
+                  <Insets top="100.0" />
+               </BorderPane.margin>
             </ImageView>
          </top>
-         <left>
-            <Avatar>
-               <BorderPane.margin>
-                  <Insets left="100.0" right="10.0" top="65.0" />
-               </BorderPane.margin>
-            </Avatar>
-         </left>
-         <center>
-            <PasswordField BorderPane.alignment="TOP_CENTER">
-               <BorderPane.margin>
-                  <Insets right="100.0" top="75.0" />
-               </BorderPane.margin>
-            </PasswordField>
-         </center>
          <bottom>
             <Button mnemonicParsing="false" text="ACEPTAR" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="100.0" />
+                  <Insets bottom="200.0" />
                </BorderPane.margin>
             </Button>
          </bottom>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="USUARIO">
+                     <VBox.margin>
+                        <Insets left="100.0" top="100.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets left="200.0" right="50.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="CONTRASEÑA">
+                     <VBox.margin>
+                        <Insets left="100.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <PasswordField fx:id="CONTRASEÑA">
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="200.0" right="50.0" />
+                     </VBox.margin>
+                  </PasswordField>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="50.0" />
+               </padding>
+            </VBox>
+         </center>
       </BorderPane>
    </children>
 </StackPane>
