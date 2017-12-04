@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase SQL Anywhere 12                       */
-/* Created on:     04-12-2017 11:44:19                          */
+/* Created on:     04-12-2017 11:53:24                          */
 /*==============================================================*/
 
 
@@ -50,12 +50,12 @@ if exists(select 1 from sys.sysforeignkey where role='FK_CALIFICA_CALIFICAC_ALUM
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_EVALUACI_RELATIONS_MODULO') then
-    alter table EVALUACIONES
+    alter table Evaluacion
        delete foreign key FK_EVALUACI_RELATIONS_MODULO
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_EVALUACI_RELATIONS_TIPOEVAL') then
-    alter table EVALUACIONES
+    alter table Evaluacion
        delete foreign key FK_EVALUACI_RELATIONS_TIPOEVAL
 end if;
 
@@ -164,13 +164,13 @@ drop index if exists CALIFICACION.CalificacionPk;
 
 drop table if exists CALIFICACION;
 
-drop index if exists EVALUACIONES.Relationship7Fk;
+drop index if exists Evaluacion.Relationship7Fk;
 
-drop index if exists EVALUACIONES.Relationship6Fk;
+drop index if exists Evaluacion.Relationship6Fk;
 
-drop index if exists EVALUACIONES.EvaluacionesPk;
+drop index if exists Evaluacion.EvaluacionesPk;
 
-drop table if exists EVALUACIONES;
+drop table if exists Evaluacion;
 
 drop index if exists HORARIO.Relationship16Fk;
 
@@ -248,9 +248,9 @@ drop table if exists USUARIO;
 create table ALUMNO 
 (
    MatriculaAlumno      integer                        not null,
-   NombreAlumno         varchar(1000)                  not null,
-   ApellidoAlumno       varchar(1000)                  null,
-   CorreoAlumno         varchar(1000)                  null,
+   NombreAlumno         varchar(255)                   not null,
+   ApellidoAlumno       varchar(255)                   null,
+   CorreoAlumno         varchar(255)                   null,
    constraint PK_ALUMNO primary key (MatriculaAlumno)
 );
 
@@ -267,9 +267,9 @@ MatriculaAlumno ASC
 create table AYUDANTE 
 (
    RutAyudante          integer                        not null,
-   NombreAyudante       varchar(1000)                  not null,
-   ApellidoAyudante     varchar(1000)                  null,
-   CorreoAyudante       varchar(1000)                  null,
+   NombreAyudante       varchar(255)                   not null,
+   ApellidoAyudante     varchar(255)                   null,
+   CorreoAyudante       varchar(255)                   null,
    constraint PK_AYUDANTE primary key (RutAyudante)
 );
 
@@ -451,36 +451,36 @@ MatriculaAlumno ASC
 );
 
 /*==============================================================*/
-/* Table: EVALUACIONES                                          */
+/* Table: Evaluacion                                            */
 /*==============================================================*/
-create table EVALUACIONES 
+create table Evaluacion 
 (
    IdEvaluacion         integer                        not null,
    IdTipoEvaluacion     integer                        not null,
    IdModulo             integer                        not null,
    FechaEvaluacion      date                           null,
    CONTENIDO            long varchar                   null,
-   constraint PK_EVALUACIONES primary key (IdEvaluacion)
+   constraint PK_EVALUACION primary key (IdEvaluacion)
 );
 
 /*==============================================================*/
 /* Index: EvaluacionesPk                                        */
 /*==============================================================*/
-create unique index EvaluacionesPk on EVALUACIONES (
+create unique index EvaluacionesPk on Evaluacion (
 IdEvaluacion ASC
 );
 
 /*==============================================================*/
 /* Index: Relationship6Fk                                       */
 /*==============================================================*/
-create index Relationship6Fk on EVALUACIONES (
+create index Relationship6Fk on Evaluacion (
 IdModulo ASC
 );
 
 /*==============================================================*/
 /* Index: Relationship7Fk                                       */
 /*==============================================================*/
-create index Relationship7Fk on EVALUACIONES (
+create index Relationship7Fk on Evaluacion (
 IdTipoEvaluacion ASC
 );
 
@@ -563,8 +563,8 @@ IdBloque ASC
 create table MODULO 
 (
    IdModulo             integer                        not null,
-   NombreModulo         varchar(1000)                  not null,
-   SEMESTRE             varchar(1000)                  null,
+   NombreModulo         varchar(255)                   not null,
+   SEMESTRE             varchar(255)                   null,
    constraint PK_MODULO primary key (IdModulo)
 );
 
@@ -581,9 +581,9 @@ IdModulo ASC
 create table PROFESOR 
 (
    RutProfesor          integer                        not null,
-   NombreProfesor       varchar(1000)                  not null,
-   ApellidoProfesor     varchar(1000)                  null,
-   CorreoProfesor       varchar(1000)                  null,
+   NombreProfesor       varchar(255)                   not null,
+   ApellidoProfesor     varchar(255)                   null,
+   CorreoProfesor       varchar(255)                   null,
    constraint PK_PROFESOR primary key (RutProfesor)
 );
 
@@ -633,7 +633,7 @@ create table SALA
 (
    IdSala               integer                        not null,
    IdTiposala           integer                        not null,
-   NombreSala           varchar(1000)                  not null,
+   NombreSala           varchar(255)                   not null,
    CAPACIDAD            integer                        not null,
    constraint PK_SALA primary key (IdSala)
 );
@@ -659,7 +659,7 @@ create table SECCION
 (
    IdSeccion            integer                        not null,
    IdAyudantia          integer                        not null,
-   NombreSeccion        varchar(1000)                  null,
+   NombreSeccion        varchar(255)                   null,
    constraint PK_SECCION primary key (IdSeccion)
 );
 
@@ -683,9 +683,9 @@ IdAyudantia ASC
 create table TUTOR 
 (
    RutTutor             integer                        not null,
-   NombreTutor          varchar(1000)                  not null,
-   ApellidoTutor        varchar(1000)                  null,
-   CorreoTutor          varchar(1000)                  null,
+   NombreTutor          varchar(255)                   not null,
+   ApellidoTutor        varchar(255)                   null,
+   CorreoTutor          varchar(255)                   null,
    constraint PK_TUTOR primary key (RutTutor)
 );
 
@@ -763,7 +763,7 @@ create table USUARIO
 (
    RutUsuario           integer                        not null,
    IdModulo             integer                        not null,
-   CONTRASENA           char(1000)                     not null,
+   Password             varchar(255)                   not null,
    CATEGORIA            integer                        not null,
    constraint PK_USUARIO primary key (RutUsuario)
 );
@@ -826,7 +826,7 @@ alter table AyudanteACargo
 
 alter table CALIFICACION
    add constraint FK_CALIFICA_CALIFICAC_EVALUACI foreign key (IdEvaluacion)
-      references EVALUACIONES (IdEvaluacion)
+      references Evaluacion (IdEvaluacion)
       on update cascade
       on delete restrict;
 
@@ -836,13 +836,13 @@ alter table CALIFICACION
       on update cascade
       on delete restrict;
 
-alter table EVALUACIONES
+alter table Evaluacion
    add constraint FK_EVALUACI_RELATIONS_MODULO foreign key (IdModulo)
       references MODULO (IdModulo)
       on update cascade
       on delete restrict;
 
-alter table EVALUACIONES
+alter table Evaluacion
    add constraint FK_EVALUACI_RELATIONS_TIPOEVAL foreign key (IdTipoEvaluacion)
       references TipoEvaluacion (IdTipoEvaluacion)
       on update cascade
