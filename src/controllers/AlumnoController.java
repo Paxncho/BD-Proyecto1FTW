@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
  *
  * @author Fernanda
  */
-public class MainAlumnoController implements Initializable{
+public class AlumnoController implements Initializable{
     
     @FXML
     private TableView detalleAlumno;

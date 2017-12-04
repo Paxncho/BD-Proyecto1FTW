@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 /**
  * @author Pencho
- * @version 1.0, Last modification: 17-11-2017
+ * @version 1.1, Last modification: 04-12-2017
  */
 
 public class MainGUI extends Stage {

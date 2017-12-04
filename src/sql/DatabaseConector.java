@@ -1,9 +1,12 @@
 package sql;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,11 +17,44 @@ import java.util.logging.Logger;
 
 public class DatabaseConector {
 
+    private static DatabaseConector instance;
+    
     private static String localpath = "jdbc:mysql://localhost:3306/";
     private static String parameters = "?autoReconnect=true&useSSL=false";
     
     private Connection conexion;
     private Statement statement;
+    
+    private static DatabaseConector setInstance(){
+        try {
+            Scanner sc = new Scanner(new File("Database Connection.txt"));
+            String dbName = sc.nextLine();
+            String user = sc.nextLine();
+            String pass = sc.nextLine();
+            
+            return new DatabaseConector(dbName, user, pass);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo de conexión no encontrado, pasando a conexión manual:");
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Database Name: ");
+            String dbName = scanner.nextLine();
+            System.out.print("User: ");
+            String user = scanner.nextLine();
+            System.out.print("Password: ");
+            String pass = scanner.nextLine();
+            
+            return new DatabaseConector(dbName, user, pass);
+        }
+    }
+    
+    public static int rutConnected;
+    
+    public static DatabaseConector getInstance(){
+        if (instance == null)
+            instance = setInstance();
+        
+        return instance;
+    }
     
     public DatabaseConector(String databaseName){
         this(databaseName, "root", "admin");

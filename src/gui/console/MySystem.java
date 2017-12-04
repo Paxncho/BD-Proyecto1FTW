@@ -10,7 +10,7 @@ import sql.Tables;
 
 /**
  * @author Pencho
- * @version 1.0, Last modification: 30-11-2017
+ * @version 1.0, Last modification: 03-12-2017
  */
 
 public class MySystem {
@@ -62,6 +62,7 @@ public class MySystem {
                 case 4: printModulos(); break;
                 case 5: printAlumnosFromModulo(); break;
                 case 6: asignarAlumnoAModulo(); break;
+                case 7: crearEvaluacion(); break;
             }
             
         }while (option != 0);
@@ -73,7 +74,7 @@ public class MySystem {
         ResultSet result = this.db.getTable(Tables.ALUMNO);
         
         try {
-            printAlumnos(result);            
+            printAlumnosWithTitle(result, true);
         } catch (Exception e){
             System.out.println("An error has ocurred while reading the database");
         }   
@@ -142,14 +143,36 @@ public class MySystem {
         }
     }
     
+    public void printEvaluaciones(){
+        printModulos();
+        System.out.println("Ingrese el id del modulo al cuál ver las evaluaciones");
+        int idModulo = Integer.parseInt(this.scanner.nextLine());
+        
+        ResultSet result = this.db.getTable(Tables.EVALUACIONES, "IdModulo = " + idModulo);
+        
+        try {
+            if (!result.isBeforeFirst())
+                System.out.println("No existen evaluaciones en ese modulo");
+            
+            else {
+                
+            }
+            
+            
+            
+        } catch (Exception e){
+            System.out.println("Error al leer las evaluaciones de ese modulo");
+        }
+    }
+    
     public void printAlumnosFromModulo(){
         printModulos();
         System.out.print("Ingrese el id del modulo a checkear: ");
         int idModulo = Integer.parseInt(this.scanner.nextLine());
         
-        String query = "select * from alumno a join ( "
-                + "select IdAlumno from evaluaciones e join "
-                + "calificacion c on e.IdEvaluacion = c.IdEvaluacion "
+        String query = "select * from " + Tables.ALUMNO.getDatabaseName() + " a join ( "
+                + "select IdAlumno from " + Tables.EVALUACIONES.getDatabaseName() + " e join "
+                + Tables.CALIFICACION.getDatabaseName() + "c on e.IdEvaluacion = c.IdEvaluacion "
                 + "where IdModulo = " + idModulo + ") as t "
                 + "on a.IdAlumno = t.IdAlumno ";
         
@@ -161,9 +184,37 @@ public class MySystem {
         }
         
         try {
-            printAlumnos(result);
+            printAlumnosWithTitle(result, true);
         } catch (Exception e) {
             System.out.println("Error al imprimir los alumnos de ese modulo");
+        }
+    }
+        
+    public void crearEvaluacion(){
+        printModulos();
+        System.out.print("Ingrese el Id del Modulo: ");
+        int idModulo = Integer.parseInt(this.scanner.nextLine());
+        
+        //printTipoEvaluaciones();
+        System.out.print("Ingrese el Id de las Evaluaciones: ");
+        int idTipoEvaluacion = Integer.parseInt(this.scanner.nextLine());
+               
+        System.out.print("Ingrese el Contenido: ");
+        String content = this.scanner.nextLine();
+        
+        try {
+            
+            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACIONES);
+            evaluaciones.last();
+            int idEvaluacion = evaluaciones.getRow();
+            
+            String values = idEvaluacion + ", " + idTipoEvaluacion + ", 0, " + idModulo + ", now(), \"" + content + "\"";
+            this.db.putInTable(Tables.EVALUACIONES, values);
+            
+            System.out.println("Evaluación creada.");
+            
+        } catch (Exception e){
+            System.out.println("Error al tratar de crear la evaluación");
         }
     }
 
@@ -204,18 +255,9 @@ public class MySystem {
         } catch (Exception e){
 
         }
-        
-        //CHECK TIPO_EVALUACION
-        // -> CREAR TIPO_EVALUACION = ASISTENCIA
-        // CHECK PROFESOR
-        // -> CREAR PROFESOR = "ADMIN"
-        // CREAR EVALUACION CON ASISTENCIA, ADMIN, MODULO
-        // CREAR CALIFICACION CON EVALUACION Y ALUMNO
-        
-        
     }
     
-    private void printAlumnos(ResultSet result) throws SQLException {
+    private void printAlumnosWithTitle(ResultSet result, boolean printId) throws SQLException {
         if (!result.isBeforeFirst()){
             System.out.println("No hay alumnos inscritos.");
             System.out.println("~~~~~~~~~~~~~~~");
@@ -223,15 +265,57 @@ public class MySystem {
         }
         
         System.out.println("ALUMNOS\n");
+
+        printAlumnos(result, printId);
             
-            while(result.next()){
+        System.out.println("~~~~~~~~~~~~~~~");
+    }
+    
+    private void printAlumnos(ResultSet result, boolean printId) throws SQLException{
+        if (!result.isBeforeFirst()){
+            System.out.println("No hay alumnos inscritos.");
+            return;
+        }
+        
+        while(result.next()){
+            if (printId)
                 System.out.println("Id del Alumno: " + result.getInt("IdAlumno"));
-                System.out.println("Nombre: " + result.getString("NombreAlumno"));
-                System.out.println("Apellido: " + result.getString("ApellidoAlumno"));
-                System.out.println("Matricula: " + result.getInt("MatriculaAlumno"));
-                System.out.println("Correo: " + result.getString("CorreoAlumno") + "\n");
-            }
-            
+
+            System.out.println("Nombre: " + result.getString("NombreAlumno"));
+            System.out.println("Apellido: " + result.getString("ApellidoAlumno"));
+            System.out.println("Matricula: " + result.getInt("MatriculaAlumno"));
+            System.out.println("Correo: " + result.getString("CorreoAlumno") + "\n");
+        }
+    }
+    
+    private void printEvaluacionWithTitle(ResultSet result, boolean printId) throws SQLException {
+        if (!result.isBeforeFirst()){
+            System.out.println("No existen evaluaciones.");
             System.out.println("~~~~~~~~~~~~~~~");
+            return;
+        }
+        
+        System.out.println("EVALUACIONES\n");
+            
+        printEvaluacion(result, printId);
+
+        System.out.println("~~~~~~~~~~~~~~~");
+    }
+
+    private void printEvaluacion(ResultSet result, boolean printId) throws SQLException {
+        if (!result.isBeforeFirst()){
+            System.out.println("No existen evaluaciones.");
+            return;
+        }
+        
+        while(result.next()){
+            if (printId)
+                System.out.println("Id Evaluacion: " + result.getInt("IdEvaluacion"));
+            
+            System.out.println("Id Tipo Evaluacion: " + result.getString("NombreAlumno"));
+            System.out.println("Apellido: " + result.getString("ApellidoAlumno"));
+            System.out.println("Matricula: " + result.getInt("MatriculaAlumno"));
+            System.out.println("Correo: " + result.getString("CorreoAlumno") + "\n");
+        }
     }
 }

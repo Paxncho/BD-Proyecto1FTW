@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 import controllers.MainModuloController ;
 import java.io.IOException;
@@ -13,12 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-import javafx.stage.Stage;
 /**
- *
- * @author Fernanda
+ * @author Fernanda, Pencho
+ * @version 1.1, Last modification: 04-12-2017
  */
+
 public class MainModuloGUI extends Stage{
     
     public MainModuloGUI (){
@@ -27,8 +21,8 @@ public class MainModuloGUI extends Stage{
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaModulo.fxml"));
             
             //Instance the controller and set to the fxml
-            MainModuloController controllerModulo = new MainModuloController();
-            fxml.setController(controllerModulo);
+//            MainModuloController controllerModulo = new MainModuloController();
+//            fxml.setController(controllerModulo);
             
             //Load the fxml
             Parent root = fxml.load();

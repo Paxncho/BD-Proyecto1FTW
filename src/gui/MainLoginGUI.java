@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
+
 import controllers.MainLoginController ;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -13,22 +9,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-import javafx.stage.Stage;
-
 /**
- *
  * @author Fernanda
+ * @version 1.1, Last modification: 04-12-2017
  */
-public class MainLoginGUI  extends Stage{
+
+public class MainLoginGUI extends Stage{
     public MainLoginGUI (){
         try {
             //Get the fxml from the file.
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/menu.fxml"));
             
             //Instance the controller and set to the fxml
-            MainLoginController controllerLogin = new MainLoginController();
-            fxml.setController(controllerLogin);
+//            MainLoginController controllerLogin = new MainLoginController();
+//            fxml.setController(controllerLogin);
             
             //Load the fxml
             Parent root = fxml.load();
