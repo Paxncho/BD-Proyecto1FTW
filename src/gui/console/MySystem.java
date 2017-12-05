@@ -148,7 +148,7 @@ public class MySystem {
         System.out.println("Ingrese el id del modulo al cuál ver las evaluaciones");
         int idModulo = Integer.parseInt(this.scanner.nextLine());
         
-        ResultSet result = this.db.getTable(Tables.EVALUACIONES, "IdModulo = " + idModulo);
+        ResultSet result = this.db.getTable(Tables.EVALUACION, "IdModulo = " + idModulo);
         
         try {
             if (!result.isBeforeFirst())
@@ -171,7 +171,7 @@ public class MySystem {
         int idModulo = Integer.parseInt(this.scanner.nextLine());
         
         String query = "select * from " + Tables.ALUMNO.getDatabaseName() + " a join ( "
-                + "select IdAlumno from " + Tables.EVALUACIONES.getDatabaseName() + " e join "
+                + "select IdAlumno from " + Tables.EVALUACION.getDatabaseName() + " e join "
                 + Tables.CALIFICACION.getDatabaseName() + "c on e.IdEvaluacion = c.IdEvaluacion "
                 + "where IdModulo = " + idModulo + ") as t "
                 + "on a.IdAlumno = t.IdAlumno ";
@@ -204,12 +204,12 @@ public class MySystem {
         
         try {
             
-            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACIONES);
+            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACION);
             evaluaciones.last();
             int idEvaluacion = evaluaciones.getRow();
             
             String values = idEvaluacion + ", " + idTipoEvaluacion + ", 0, " + idModulo + ", now(), \"" + content + "\"";
-            this.db.putInTable(Tables.EVALUACIONES, values);
+            this.db.putInTable(Tables.EVALUACION, values);
             
             System.out.println("Evaluación creada.");
             
@@ -243,12 +243,12 @@ public class MySystem {
                 this.db.putInTable(Tables.PROFESOR, values);
             }
             
-            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACIONES);
+            ResultSet evaluaciones = this.db.getTable(Tables.EVALUACION);
             evaluaciones.last();
             int idEvaluacion = evaluaciones.getRow();
             
             String values = idEvaluacion + ", 0, " + "0" + ", " + idModulo + ", NULL, NULL";
-            this.db.putInTable(Tables.EVALUACIONES, values);
+            this.db.putInTable(Tables.EVALUACION, values);
             
             values = idEvaluacion + ", " + idAlumno + ", 0";            
             this.db.putInTable(Tables.CALIFICACION, values);

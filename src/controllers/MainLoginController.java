@@ -31,15 +31,12 @@ public class MainLoginController implements Initializable  {
     
     @FXML
     private void loginAction(ActionEvent event) {
-        System.out.println("CLICKED!");
         if (!CheckUser()){
             label.setVisible(true);
             label.setText("Error al ingresar los datos, intente nuevamente.");
         } else {
             System.out.println("LOGIN");
-            
-            DatabaseConector.rutConnected = Integer.parseInt(userField.getText());
-            
+                        
             CuerpoModuloGUI cuerpoModulo = new CuerpoModuloGUI();
             cuerpoModulo.show();
             
@@ -64,9 +61,14 @@ public class MainLoginController implements Initializable  {
                 return false;
             
             users.next();
-            System.out.println(users.getString("Contraseña") + ", " + pass);
             
-            return users.getString("Contraseña").equals(pass);
+            if (users.getString("Password").equals(pass)){
+                DatabaseConector.rutConnected = Integer.parseInt(userField.getText());
+                DatabaseConector.typeConnected = users.getInt("IdTipoUsuario");
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e){
             return false;
         }
