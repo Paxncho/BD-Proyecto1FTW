@@ -21,7 +21,7 @@ import sql.Tables;
  */
 
 public class CrearModuloGUI extends Stage{
-    private ComboBox horariosModulo;
+    private ComboBox diasModulo;
     private ComboBox bloquesModulo;
     private ComboBox salasModulo;
     
@@ -34,11 +34,11 @@ public class CrearModuloGUI extends Stage{
             Parent root = fxml.load();
             Scene scene = new Scene(root, 600, 400);
             
-            this.horariosModulo = (ComboBox) scene.lookup("#horariosModulo");
+            this.diasModulo = (ComboBox) scene.lookup("#diasModulo");
             this.bloquesModulo = (ComboBox) scene.lookup("#bloquesModulo");
             this.salasModulo = (ComboBox) scene.lookup("#salasModulo");
             
-//            this.fillHorarios();
+            this.fillDias();
             this.fillBloques();
             this.fillSalas();
             
@@ -51,20 +51,13 @@ public class CrearModuloGUI extends Stage{
         }
     }
 
-    private void fillHorarios() {
+    private void fillDias() {
         ObservableList<String> data = FXCollections.observableArrayList();
         
-        try {
-            ResultSet result = DatabaseConector.getInstance().getTable(Tables.HORARIO);
-            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            data.clear();
-            data.add("Error al leer los horarios de la base de datos.");
-        } finally {
-            this.horariosModulo.setItems(data);
-        }        
+        data.addAll("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
+        
+        this.diasModulo.setItems(data);
+        this.diasModulo.getSelectionModel().selectFirst();
     }
 
     private void fillBloques() {
@@ -75,8 +68,8 @@ public class CrearModuloGUI extends Stage{
             
             if (!result.isBeforeFirst()){
                 data.add(new DataComboBox(-1, "No hay bloques disponibles."));
-                this.horariosModulo.setItems(data);
-                this.horariosModulo.getSelectionModel().selectFirst();
+                this.bloquesModulo.setItems(data);
+                this.bloquesModulo.getSelectionModel().selectFirst();
                 return;
             }
             
@@ -91,8 +84,8 @@ public class CrearModuloGUI extends Stage{
             data.clear();
             data.add(new DataComboBox(-2, "Error al leer los horarios de la base de datos."));
         } finally {
-            this.horariosModulo.setItems(data);
-            this.horariosModulo.getSelectionModel().selectFirst();
+            this.bloquesModulo.setItems(data);
+            this.bloquesModulo.getSelectionModel().selectFirst();
         }   
     }
 

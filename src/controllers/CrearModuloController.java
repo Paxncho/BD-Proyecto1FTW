@@ -26,7 +26,7 @@ public class CrearModuloController implements Initializable {
 
     @FXML private TextField nombreModulo;
     @FXML private TextField semestreModulo;
-    @FXML private ComboBox horariosModulo;
+    @FXML private ComboBox diasModulo;
     @FXML private ComboBox bloquesModulo;
     @FXML private ComboBox salasModulo;
     
@@ -51,7 +51,7 @@ public class CrearModuloController implements Initializable {
         String nombre = nombreModulo.getText();
         int semestre = Integer.parseInt(semestreModulo.getText());
         
-        int horarioId = ((CrearModuloGUI.DataComboBox) horariosModulo.getSelectionModel().getSelectedItem()).getId();
+        String dia = (String) diasModulo.getSelectionModel().getSelectedItem();
         int bloquesId = ((CrearModuloGUI.DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
         int salasId = ((CrearModuloGUI.DataComboBox) salasModulo.getSelectionModel().getSelectedItem()).getId();
         
@@ -90,7 +90,7 @@ public class CrearModuloController implements Initializable {
         String moduloValues = idModulo + ", \"" + nombre + "\", " + semestre;
         DatabaseConector.getInstance().putInTable(Tables.MODULO, moduloValues);
         
-        String horarioValues = idHorario + ", " + salasId + ", " + idModulo + ", NULL, DIA";
+        String horarioValues = idHorario + ", " + salasId + ", " + idModulo + ", NULL, \"" + dia + "\"";
         DatabaseConector.getInstance().putInTable(Tables.HORARIO, horarioValues);
         
         String profesorACargoValues = idProfesor + ", " + idModulo;
@@ -111,12 +111,8 @@ public class CrearModuloController implements Initializable {
         String semestre = semestreModulo.getText();       
         if (!semestre.matches("[0-9]+") || semestre.length() < 1)
             return -2;
-        
-        int id = ((CrearModuloGUI.DataComboBox) horariosModulo.getSelectionModel().getSelectedItem()).getId();
-        if (id < 0)
-            return -3;
-        
-        id = ((CrearModuloGUI.DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
+
+        int id = ((CrearModuloGUI.DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
         if (id < 0)
             return -4;
         
