@@ -8,13 +8,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventTarget;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sql.DatabaseConector;
@@ -50,6 +55,7 @@ public class ModulosGUI extends Stage {
             
             //Set the GUI reference.
             ((ModulosController) fxml.getController()).setGUI(this);
+            this.informacionModulos.addEventHandler(MouseEvent.MOUSE_CLICKED, (ModulosController) fxml.getController());
         } catch (IOException ex) {
             Logger.getLogger(ModulosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,7 +90,7 @@ public class ModulosGUI extends Stage {
                         return new SimpleStringProperty(param.getValue().get(1).toString());
                     }                    
                 });
-            this.informacionModulos.getColumns().addAll(colM, colP);            
+            this.informacionModulos.getColumns().addAll(colM, colP);
             
             //Si no hay datos, cancelar el relleno de la tabla
             if (!result.isBeforeFirst()){
@@ -134,16 +140,7 @@ public class ModulosGUI extends Stage {
                 default:
                     return;
             }
-            
-//            this.profileList.setCellFactory(new Callback<ListView<String>, 
-//                ListCell<String>>() {
-//                    @Override 
-//                    public ListCell<String> call(ListView<String> list) {
-//                        return null;
-//                    }
-//                }
-//            );
-            
+
             //Está vacio?
             if (!profile.isBeforeFirst()){
                 return;
@@ -161,5 +158,5 @@ public class ModulosGUI extends Stage {
         
         }
         
-    }
+    }    
 }
