@@ -1,4 +1,5 @@
 package gui;
+import controllers.ModulosController;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -10,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -25,18 +25,18 @@ import sql.Tables;
  * @version 1.1, Last modification: 04-12-2017
  */
 
-public class CuerpoModuloGUI extends Stage {
+public class ModulosGUI extends Stage {
     
     private ObservableList<ObservableList> data;
     private ObservableList<String> profileData;
     private TableView informacionModulos;
     private ListView profileList;
     
-    public CuerpoModuloGUI(){
+    public ModulosGUI(){
         try {
             //Get the fxml from the file.
-            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaCuerpoModulo.fxml"));
-            
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaModulos.fxml"));
+                       
             //Load the fxml
             Parent root = fxml.load();
             Scene scene = new Scene(root, 600, 400);
@@ -47,12 +47,15 @@ public class CuerpoModuloGUI extends Stage {
             this.fillProfileData();
             
             super.setScene(scene);
+            
+            //Set the GUI reference.
+            ((ModulosController) fxml.getController()).setGUI(this);
         } catch (IOException ex) {
-            Logger.getLogger(CuerpoModuloGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModulosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void fillList(){
+    public final void fillList(){
         this.data = FXCollections.observableArrayList();
         
         try {

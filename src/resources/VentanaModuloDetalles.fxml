@@ -9,13 +9,13 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="29.0" layoutY="118.0" prefHeight="265.0" prefWidth="544.0">
          <children>
@@ -51,10 +51,11 @@
                         <Insets left="380.0" />
                      </GridPane.margin>
                   </Button>
-                  <TableView prefHeight="57.0" prefWidth="544.0">
+                  <TableView prefHeight="86.0" prefWidth="458.0">
                     <columns>
-                      <TableColumn prefWidth="234.0" text="FECHA EVALUACION" />
-                      <TableColumn minWidth="5.0" prefWidth="308.0" resizable="false" text="CONTENIDO" />
+                      <TableColumn prefWidth="168.0" text="FECHA EVALUACION" />
+                      <TableColumn minWidth="5.0" prefWidth="198.0" resizable="false" text="CONTENIDO" />
+                        <TableColumn prefWidth="177.0" text="PROMEDIO CURSO" />
                     </columns>
                   </TableView>
                   <Button layoutX="390.0" layoutY="258.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="62.0" text="+EVALUACION" GridPane.rowIndex="2">
@@ -93,5 +94,6 @@
             <Separator layoutX="1.0" layoutY="96.0" prefHeight="6.0" prefWidth="544.0" />
          </children>
       </Pane>
+      <FlowPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

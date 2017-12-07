@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Pencho
@@ -25,7 +23,7 @@ public class DatabaseConector {
     private static DatabaseConector instance;
     private static DatabaseConector setInstance(){
         try {
-            Scanner sc = new Scanner(new File("Database Connection.txt"));
+            Scanner sc = new Scanner(new File("conexion.txt"));
             String dbName = sc.nextLine();
             String user = sc.nextLine();
             String pass = sc.nextLine();

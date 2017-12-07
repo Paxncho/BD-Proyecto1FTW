@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearModuloController">
    <children>
       <Pane layoutX="29.0" layoutY="27.0" prefHeight="347.0" prefWidth="539.0">
          <children>
-            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" text="CANCELAR" />
-            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" text="ACEPTAR" />
+            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" onAction="#close" text="CANCELAR" />
+            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" onAction="#addModulo" text="ACEPTAR" />
             <Label layoutX="68.0" layoutY="39.0" prefHeight="25.0" prefWidth="124.0" text="NOMBRE MODULO" />
-            <TextField layoutX="235.0" layoutY="42.0" prefHeight="25.0" prefWidth="257.0" />
+            <TextField fx:id="nombreModulo" layoutX="235.0" layoutY="42.0" prefHeight="25.0" prefWidth="257.0" />
             <Label layoutX="68.0" layoutY="91.0" prefHeight="25.0" prefWidth="132.0" text="HORARIO MODULO" />
             <Label layoutX="68.0" layoutY="149.0" prefHeight="25.0" prefWidth="124.0" text="BLOQUE MODULO" />
             <Label layoutX="68.0" layoutY="199.0" prefHeight="25.0" prefWidth="113.0" text="SALA MODULO" />
-            <ComboBox layoutX="235.0" layoutY="94.0" prefHeight="25.0" prefWidth="257.0" />
-            <ComboBox layoutX="235.0" layoutY="152.0" prefHeight="25.0" prefWidth="257.0" />
-            <ComboBox layoutX="235.0" layoutY="202.0" prefHeight="25.0" prefWidth="257.0" />
+            <ComboBox fx:id="horariosModulo" layoutX="235.0" layoutY="94.0" prefHeight="25.0" prefWidth="257.0" />
+            <ComboBox fx:id="bloquesModulo" layoutX="235.0" layoutY="152.0" prefHeight="25.0" prefWidth="257.0" />
+            <ComboBox fx:id="salasModulo" layoutX="235.0" layoutY="202.0" prefHeight="25.0" prefWidth="257.0" />
          </children>
       </Pane>
    </children>

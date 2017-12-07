@@ -62,9 +62,9 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <Label fx:id="label" disable="true" text="Label" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label fx:id="label" text="Label" textAlignment="CENTER" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <opaqueInsets>
-            <Insets top="10.0" />
+            <Insets />
          </opaqueInsets>
       </Label>
    </children>

@@ -2,39 +2,41 @@ package sql;
 
 /**
  * @author Pencho
- * @version 1.0, Last modification: 04-12-2017
+ * @version 1.1, Last modification: 07-12-2017
  */
 
 public enum Tables {
-    ALUMNO ("alumno", "MatriculaAlumno, NombreAlumno, ApellidoAlumno, CorreoAlumno"),
-    ASISTENCIA_A_CLASES("asistenciaaclases", "MatriculaAlumno, IdModulo"),
-    ASISTENCIA_TUTORIAS("asistenciatutoria","MatriculaAlumno, IdTutoria"),
-    AYUDANTE ("ayudante", "RutAyudante, NombreAyudante, ApellidoAyudante, CorreoAyudante"),
-    AYUDANTE_A_CARGO("ayudanteacargo", "IdAyudantia, RutAyudante"),
-    AYUDANTIA ("ayudantia", "IdAyudantia, IdModulo"),
-    BLOQUE("bloque", "IdBloque, HoraInicio, HoraTermino"),
-    CALIFICACION("calificacion", "IdEvaluacion, MatriculaAlumno, Nota, Comentario"),
-    EVALUACION("evaluacion", "IdEvaluacion, IdTipoEvaluacion, IdModulo, FechaEvaluacion, Contenido"),
-    HORARIO("horario", "IdHorario, IdSala, IdSeccion, DIA"),
-    HORARIO_BLOQUE("horariobloque", "IdHorario, IdBloque"),
-    MODULO("modulo", "IdModulo, NombreModulo, SEMESTRE"),
-    PROFESOR("profesor", "RutProfesor, NombreProfesor, ApellidoProfesor, CorreoProfesor"),
-    PROFESOR_A_CARGO("profesoracargo","RutProfesor, IdModulo"),
-    SALA("sala", "IdSala, IdTiposala, NombreSala, CAPACIDAD"),
-    SECCION("seccion", "IdSeccion, IdAyudantia, NombreSeccion"),
-    TIPO_EVALUACION("tipoevaluacion", "IdTipoEvaluacion, Descripcion"),
-    TIPO_SALA("tiposala", "IdTiposala, Descripcion"),
-    TIPO_USUARIO("tipousuario", "IdTipoUsuario, NombreTipo"),
-    TUTOR("tutor", "RutTutor, NombreTutor, ApellidoTutor, CorreoTutor"),
-    TUTORIA("tutoria", "IdTutoria, RutTutor, Cantidad, Descripcion"),
-    USUARIO("usuario", "RutUsuario, Password, IdTipoUsuario");
+    ALUMNO ("alumno", "MatriculaAlumno, NombreAlumno, ApellidoAlumno, CorreoAlumno", "MatriculaAlumno"),
+    ASISTENCIA_A_CLASES("asistenciaaclases", "MatriculaAlumno, IdModulo", ""),
+    ASISTENCIA_TUTORIAS("asistenciatutoria","MatriculaAlumno, IdTutoria", ""),
+    AYUDANTE ("ayudante", "RutAyudante, NombreAyudante, ApellidoAyudante, CorreoAyudante", "RutAyudante"),
+    AYUDANTE_A_CARGO("ayudanteacargo", "IdAyudantia, RutAyudante", ""),
+    AYUDANTIA ("ayudantia", "IdAyudantia, IdModulo", ""),
+    BLOQUE("bloque", "IdBloque, HoraInicio, HoraTermino", "IdBloque"),
+    CALIFICACION("calificacion", "IdEvaluacion, MatriculaAlumno, Nota, Comentario", ""),
+    EVALUACION("evaluacion", "IdEvaluacion, IdTipoEvaluacion, IdModulo, FechaEvaluacion, Contenido", "IdEvaluacion"),
+    HORARIO("horario", "IdHorario, IdSala, IdSeccion, DIA", "IdHorario"),
+    HORARIO_BLOQUE("horariobloque", "IdHorario, IdBloque", ""),
+    MODULO("modulo", "IdModulo, NombreModulo, SEMESTRE", "IdModulo"),
+    PROFESOR("profesor", "RutProfesor, NombreProfesor, ApellidoProfesor, CorreoProfesor", "RutProfesor"),
+    PROFESOR_A_CARGO("profesoracargo","RutProfesor, IdModulo", ""),
+    SALA("sala", "IdSala, IdTiposala, NombreSala, CAPACIDAD", "IdSala"),
+    SECCION("seccion", "IdSeccion, IdAyudantia, NombreSeccion", "IdSeccion"),
+    TIPO_EVALUACION("tipoevaluacion", "IdTipoEvaluacion, Descripcion", "IdTipoEvaluacion"),
+    TIPO_SALA("tiposala", "IdTiposala, Descripcion", "IdTipoSala"),
+    TIPO_USUARIO("tipousuario", "IdTipoUsuario, NombreTipo", "IdTipoUsuario"),
+    TUTOR("tutor", "RutTutor, NombreTutor, ApellidoTutor, CorreoTutor", "RutTutor"),
+    TUTORIA("tutoria", "IdTutoria, RutTutor, Cantidad, Descripcion", "IdTutoria"),
+    USUARIO("usuario", "RutUsuario, Password, IdTipoUsuario", "RutUsuario");
     
     private final String name;
     private final String parameters;
+    private final String id;
     
-    Tables(String databaseName, String parameters){
+    Tables(String databaseName, String parameters, String id){
         this.name = databaseName;
         this.parameters = parameters;
+        this.id = id;
     }
     
     public String getDatabaseName(){
@@ -44,5 +46,8 @@ public enum Tables {
     public String getDatabaseParameters(){
         return this.parameters;
     }
-   
+    
+    public String getId(){
+        return this.id;
+    }   
 }

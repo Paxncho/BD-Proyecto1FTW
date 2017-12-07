@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CuerpoModuloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulosController">
    <children>
       <Pane layoutX="175.0" layoutY="21.0" prefHeight="358.0" prefWidth="403.0">
          <children>
@@ -34,6 +34,7 @@
               </columns>
             </TableView>
             <ScrollBar disable="true" layoutX="370.0" layoutY="45.0" orientation="VERTICAL" prefHeight="273.0" prefWidth="14.0" />
+            <ListView fx:id="profileList" layoutX="-132.0" layoutY="118.0" prefHeight="200.0" prefWidth="100.0" />
          </children>
       </Pane>
       <Pane layoutX="23.0" layoutY="21.0" prefHeight="358.0" prefWidth="138.0">
@@ -46,7 +47,6 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <ListView fx:id="profileList" layoutX="-31.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" scaleX="0.5" scaleY="1.1" />
          </children>
       </Pane>
       <Separator layoutX="159.0" layoutY="23.0" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />
