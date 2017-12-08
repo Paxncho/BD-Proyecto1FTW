@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CuerpoModuloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulosController">
    <children>
       <Pane layoutX="175.0" layoutY="21.0" prefHeight="358.0" prefWidth="403.0">
          <children>
@@ -27,7 +27,7 @@
                   <Font size="6.0" />
                </font>
             </Button>
-            <TableView fx:id="informacionModulos" layoutX="25.0" layoutY="45.0" onMouseClicked="#doubleClick" onSort="#refreshList" prefHeight="273.0" prefWidth="352.0">
+            <TableView fx:id="informacionModulos" layoutX="25.0" layoutY="45.0" onSort="#refreshList" prefHeight="273.0" prefWidth="352.0">
               <columns>
                 <TableColumn prefWidth="149.0" text="MODULO" />
                 <TableColumn minWidth="0.0" prefWidth="209.0" text="PROFESOR- ASISTENTE" />

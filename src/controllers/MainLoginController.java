@@ -1,6 +1,6 @@
 package controllers;
 
-import gui.CuerpoModuloGUI;
+import gui.ModulosGUI;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
@@ -31,17 +31,26 @@ public class MainLoginController implements Initializable  {
     
     @FXML
     private void loginAction(ActionEvent event) {
-        if (!CheckUser()){
-            label.setVisible(true);
-            label.setText("Error al ingresar los datos, intente nuevamente.");
-        } else {
-            System.out.println("LOGIN");
-                        
-            CuerpoModuloGUI cuerpoModulo = new CuerpoModuloGUI();
-            cuerpoModulo.show();
-            
-            Stage stage = (Stage) button.getScene().getWindow();
-            stage.close();
+        switch(CheckUser()){
+            case -2: //Error al conectar con la BD
+                label.setVisible(true);
+                label.setText("Error al conectar con la Base de Datos, checkee 'conexion.txt'\ny revise que los datos sean correctos.");
+                break;
+            case -1: //Pass Incorrecta
+                label.setVisible(true);
+                label.setText("Password incorrecto, intente nuevamente.");
+                break;
+            case 0: //Usuario no encontrado
+                label.setVisible(true);
+                label.setText("Usuario no encontrado, intente nuevamente.");
+                break;
+            case 1: //Conexión concreatada
+                ModulosGUI modulos = new ModulosGUI();
+                modulos.show();
+
+                Stage stage = (Stage) button.getScene().getWindow();
+                stage.close();
+                break;
         }
     }
         
@@ -50,27 +59,27 @@ public class MainLoginController implements Initializable  {
         label.setVisible(false);
     }
     
-    private boolean CheckUser(){
+    private int CheckUser(){
         String user = userField.getText();
         String pass = passwordField.getText();
-        
-        ResultSet users = DatabaseConector.getInstance().getTable(Tables.USUARIO, "RutUsuario = " + user);
+    
         
         try {
+            ResultSet users = DatabaseConector.getInstance().getTable(Tables.USUARIO, "RutUsuario = " + user);
             if (!users.isBeforeFirst())
-                return false;
+                return 0;
             
             users.next();
             
             if (users.getString("Password").equals(pass)){
                 DatabaseConector.rutConnected = Integer.parseInt(userField.getText());
                 DatabaseConector.typeConnected = users.getInt("IdTipoUsuario");
-                return true;
+                return 1;
             } else {
-                return false;
+                return -1;
             }
         } catch (Exception e){
-            return false;
+            return -2;
         }
     }
 }

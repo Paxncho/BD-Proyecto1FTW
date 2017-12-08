@@ -20,7 +20,7 @@ import javafx.scene.control.TreeTableView;
  *
  * @author Fernanda
  */
-public class MainModuloController implements Initializable {
+public class ModuloDetailsController implements Initializable {
 
     @FXML
     private TableView horario;

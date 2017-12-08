@@ -1,4 +1,5 @@
 package gui;
+import controllers.ModulosController;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -7,14 +8,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventTarget;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sql.DatabaseConector;
@@ -25,18 +30,18 @@ import sql.Tables;
  * @version 1.1, Last modification: 04-12-2017
  */
 
-public class CuerpoModuloGUI extends Stage {
+public class ModulosGUI extends Stage {
     
     private ObservableList<ObservableList> data;
     private ObservableList<String> profileData;
     private TableView informacionModulos;
     private ListView profileList;
     
-    public CuerpoModuloGUI(){
+    public ModulosGUI(){
         try {
             //Get the fxml from the file.
-            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaCuerpoModulo.fxml"));
-            
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaModulos.fxml"));
+                       
             //Load the fxml
             Parent root = fxml.load();
             Scene scene = new Scene(root, 600, 400);
@@ -47,12 +52,16 @@ public class CuerpoModuloGUI extends Stage {
             this.fillProfileData();
             
             super.setScene(scene);
+            
+            //Set the GUI reference.
+            ((ModulosController) fxml.getController()).setGUI(this);
+            this.informacionModulos.addEventHandler(MouseEvent.MOUSE_CLICKED, (ModulosController) fxml.getController());
         } catch (IOException ex) {
-            Logger.getLogger(CuerpoModuloGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModulosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void fillList(){
+    public final void fillList(){
         this.data = FXCollections.observableArrayList();
         
         try {
@@ -81,7 +90,7 @@ public class CuerpoModuloGUI extends Stage {
                         return new SimpleStringProperty(param.getValue().get(1).toString());
                     }                    
                 });
-            this.informacionModulos.getColumns().addAll(colM, colP);            
+            this.informacionModulos.getColumns().addAll(colM, colP);
             
             //Si no hay datos, cancelar el relleno de la tabla
             if (!result.isBeforeFirst()){
@@ -131,16 +140,7 @@ public class CuerpoModuloGUI extends Stage {
                 default:
                     return;
             }
-            
-//            this.profileList.setCellFactory(new Callback<ListView<String>, 
-//                ListCell<String>>() {
-//                    @Override 
-//                    public ListCell<String> call(ListView<String> list) {
-//                        return null;
-//                    }
-//                }
-//            );
-            
+
             //Está vacio?
             if (!profile.isBeforeFirst()){
                 return;
@@ -158,5 +158,5 @@ public class CuerpoModuloGUI extends Stage {
         
         }
         
-    }
+    }    
 }
