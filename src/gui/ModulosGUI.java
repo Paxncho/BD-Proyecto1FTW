@@ -36,6 +36,8 @@ public class ModulosGUI extends Stage {
     private ObservableList<String> profileData;
     private TableView informacionModulos;
     private ListView profileList;
+    private TableColumn moduloCol;
+    private TableColumn profAsisCol;
     
     public ModulosGUI(){
         try {
@@ -55,6 +57,8 @@ public class ModulosGUI extends Stage {
             
             //Set the GUI reference.
             ((ModulosController) fxml.getController()).setGUI(this);
+            
+            //Set the handler for the double click
             this.informacionModulos.addEventHandler(MouseEvent.MOUSE_CLICKED, (ModulosController) fxml.getController());
         } catch (IOException ex) {
             Logger.getLogger(ModulosGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,24 +78,18 @@ public class ModulosGUI extends Stage {
                     + "on m.IdModulo = pa.IdModulo";
                         
             ResultSet result = DatabaseConector.getInstance().executeQuery(query);
-            
-            //Recrear Columnas
-            this.informacionModulos.getColumns().clear();
-            TableColumn colM = new TableColumn("Modulo");
-                colM.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {                                                                               
-                        return new SimpleStringProperty(param.getValue().get(0).toString()); 
-                    }                    
-                });
+                        
+            //Preparar las columnas para mostrar la data correctamente
+            for (int i = 0; i < this.informacionModulos.getColumns().size(); i++){
+                final int j = i;
                 
-            TableColumn colP = new TableColumn("Profesor-Asistente");
-                colP.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {                                                                               
-                        return new SimpleStringProperty(param.getValue().get(1).toString());
-                    }                    
-                });
-            this.informacionModulos.getColumns().addAll(colM, colP);
-            
+                ((TableColumn) this.informacionModulos.getColumns().get(i)).setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }                    
+                    });
+            }
+
             //Si no hay datos, cancelar el relleno de la tabla
             if (!result.isBeforeFirst()){
                 return;
@@ -103,8 +101,6 @@ public class ModulosGUI extends Stage {
                 
                 row.add(result.getString("NombreModulo"));
                 row.add(result.getString("NombreProfesor") + " " + result.getString("ApellidoProfesor"));
-                
-                System.out.println(row);
                 
                 this.data.add(row);
             }

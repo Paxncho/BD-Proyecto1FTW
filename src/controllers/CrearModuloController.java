@@ -1,6 +1,7 @@
 package controllers;
 
 import gui.CrearModuloGUI;
+import gui.DataComboBox;
 import gui.ModulosGUI;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -52,8 +53,8 @@ public class CrearModuloController implements Initializable {
         int semestre = Integer.parseInt(semestreModulo.getText());
         
         String dia = (String) diasModulo.getSelectionModel().getSelectedItem();
-        int bloquesId = ((CrearModuloGUI.DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
-        int salasId = ((CrearModuloGUI.DataComboBox) salasModulo.getSelectionModel().getSelectedItem()).getId();
+        int bloquesId = ((DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
+        int salasId = ((DataComboBox) salasModulo.getSelectionModel().getSelectedItem()).getId();
         
         int idModulo;
         try {
@@ -90,11 +91,11 @@ public class CrearModuloController implements Initializable {
         String moduloValues = idModulo + ", \"" + nombre + "\", " + semestre;
         DatabaseConector.getInstance().putInTable(Tables.MODULO, moduloValues);
         
-        String horarioValues = idHorario + ", " + salasId + ", " + idModulo + ", NULL, \"" + dia + "\"";
-        DatabaseConector.getInstance().putInTable(Tables.HORARIO, horarioValues);
-        
         String profesorACargoValues = idProfesor + ", " + idModulo;
         DatabaseConector.getInstance().putInTable(Tables.PROFESOR_A_CARGO, profesorACargoValues);
+        
+        String horarioValues = idHorario + ", " + salasId + ", " + idModulo + ", NULL, \"" + dia + "\"";
+        DatabaseConector.getInstance().putInTable(Tables.HORARIO, horarioValues);
         
         String horarioBloqueValues = idHorario + ", " + bloquesId;
         DatabaseConector.getInstance().putInTable(Tables.HORARIO_BLOQUE, horarioBloqueValues);
@@ -112,11 +113,11 @@ public class CrearModuloController implements Initializable {
         if (!semestre.matches("[0-9]+") || semestre.length() < 1)
             return -2;
 
-        int id = ((CrearModuloGUI.DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
+        int id = ((DataComboBox) bloquesModulo.getSelectionModel().getSelectedItem()).getId();
         if (id < 0)
             return -4;
         
-        id = ((CrearModuloGUI.DataComboBox) salasModulo.getSelectionModel().getSelectedItem()).getId();
+        id = ((DataComboBox) salasModulo.getSelectionModel().getSelectedItem()).getId();
         if (id < 0)
             return -5;
     

@@ -2,20 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModuloDetailsController">
    <children>
       <Pane layoutX="29.0" layoutY="118.0" prefHeight="265.0" prefWidth="544.0">
          <children>
@@ -29,13 +25,20 @@
                 <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="154.0" prefWidth="544.0" GridPane.rowIndex="1">
+                  <TableView fx:id="evaluacionesTable" prefHeight="86.0" prefWidth="458.0">
                     <columns>
-                      <TableColumn prefWidth="50.0" text="N°" />
-                      <TableColumn minWidth="0.0" prefWidth="493.0" text="ALUMNO" />
+                      <TableColumn editable="false" prefWidth="168.0" sortable="false" text="FECHA EVALUACION" />
+                      <TableColumn editable="false" minWidth="5.0" prefWidth="198.0" resizable="false" sortable="false" text="CONTENIDO" />
+                        <TableColumn editable="false" prefWidth="177.0" sortable="false" text="PROMEDIO CURSO" />
                     </columns>
                   </TableView>
-                  <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="62.0" text="+AYUDANTIA" GridPane.rowIndex="2">
+                  <TableView fx:id="alumnosTable" prefHeight="154.0" prefWidth="544.0" GridPane.rowIndex="1">
+                    <columns>
+                      <TableColumn editable="false" maxWidth="60.0" minWidth="25.0" prefWidth="30.0" sortable="false" text="N°" />
+                      <TableColumn editable="false" maxWidth="520.0" minWidth="100.0" prefWidth="514.0" sortable="false" text="ALUMNO" />
+                    </columns>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#crearAyudantia" prefHeight="18.0" prefWidth="62.0" text="+AYUDANTIA" GridPane.rowIndex="2">
                      <font>
                         <Font size="7.0" />
                      </font>
@@ -43,7 +46,7 @@
                         <Insets left="450.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="62.0" text="+TUTORIA" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" onAction="#crearTutoria" prefHeight="18.0" prefWidth="62.0" text="+TUTORIA" GridPane.rowIndex="2">
                      <font>
                         <Font size="7.0" />
                      </font>
@@ -51,14 +54,7 @@
                         <Insets left="380.0" />
                      </GridPane.margin>
                   </Button>
-                  <TableView prefHeight="86.0" prefWidth="458.0">
-                    <columns>
-                      <TableColumn prefWidth="168.0" text="FECHA EVALUACION" />
-                      <TableColumn minWidth="5.0" prefWidth="198.0" resizable="false" text="CONTENIDO" />
-                        <TableColumn prefWidth="177.0" text="PROMEDIO CURSO" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="390.0" layoutY="258.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="62.0" text="+EVALUACION" GridPane.rowIndex="2">
+                  <Button layoutX="390.0" layoutY="258.0" mnemonicParsing="false" onAction="#crearEvaluacion" prefHeight="18.0" prefWidth="62.0" text="+EVALUACION" GridPane.rowIndex="2">
                      <font>
                         <Font size="7.0" />
                      </font>
@@ -78,22 +74,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="90.0" prefWidth="327.0" GridPane.columnIndex="1">
+                  <TableView fx:id="horariosTable" prefHeight="90.0" prefWidth="327.0" GridPane.columnIndex="1">
                     <columns>
-                      <TableColumn prefWidth="327.0" text="HORARIO" />
+                      <TableColumn editable="false" maxWidth="327.0" minWidth="100.0" prefWidth="327.0" sortable="false" text="HORARIO" />
                     </columns>
                   </TableView>
-                  <TreeTableView prefHeight="100.0" prefWidth="233.0">
+                  <TableView fx:id="ayudantiasTable" prefHeight="100.0" prefWidth="233.0">
                     <columns>
-                      <TreeTableColumn prefWidth="96.0" text="MODULO" />
-                      <TreeTableColumn minWidth="0.0" prefWidth="133.0" text="AYUDANTIAS" />
+                      <TableColumn editable="false" maxWidth="200.0" minWidth="30.0" prefWidth="100.0" sortable="false" text="MODULO" />
+                      <TableColumn editable="false" maxWidth="200.0" minWidth="30.0" prefWidth="133.0" sortable="false" text="AYUDANTIAS" />
                     </columns>
-                  </TreeTableView>
+                  </TableView>
                </children>
             </GridPane>
-            <Separator layoutX="1.0" layoutY="96.0" prefHeight="6.0" prefWidth="544.0" />
          </children>
       </Pane>
-      <FlowPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

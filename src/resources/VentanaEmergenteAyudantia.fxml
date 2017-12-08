@@ -7,23 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearAyudantiaController">
    <children>
       <Pane layoutX="29.0" layoutY="27.0" prefHeight="347.0" prefWidth="539.0">
          <children>
-            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" text="CANCELAR" />
-            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" text="ACEPTAR" />
             <Label layoutX="68.0" layoutY="39.0" prefHeight="25.0" prefWidth="124.0" text="NOMBRE AYUDANTIA" />
-            <TextField layoutX="235.0" layoutY="41.0" prefHeight="25.0" prefWidth="257.0" />
+            <TextField fx:id="nombreAyudantia" layoutX="235.0" layoutY="41.0" onAction="#crearAyudantia" prefHeight="25.0" prefWidth="257.0" />
             <Label layoutX="68.0" layoutY="91.0" prefHeight="25.0" prefWidth="132.0" text="HORARIO AYUDANTIA" />
-            <Label layoutX="68.0" layoutY="149.0" prefHeight="25.0" prefWidth="124.0" text="BLOQUE AYUDANTIA" />
+            <ComboBox fx:id="horariosAyudantia" layoutX="235.0" layoutY="93.0" prefHeight="25.0" prefWidth="257.0" />
+            <Label layoutX="68.0" layoutY="149.0" prefHeight="25.0" prefWidth="124.0" text="DIA AYUDANTIA" />
+            <ComboBox fx:id="diasAyudantia" layoutX="235.0" layoutY="151.0" prefHeight="25.0" prefWidth="257.0" />
             <Label layoutX="68.0" layoutY="199.0" prefHeight="25.0" prefWidth="113.0" text="SALA AYUDANTIA" />
-            <ComboBox layoutX="235.0" layoutY="93.0" prefHeight="25.0" prefWidth="257.0" />
-            <ComboBox layoutX="235.0" layoutY="151.0" prefHeight="25.0" prefWidth="257.0" />
-            <ComboBox layoutX="235.0" layoutY="201.0" prefHeight="25.0" prefWidth="257.0" />
+            <ComboBox fx:id="salasAyudantia" layoutX="235.0" layoutY="201.0" prefHeight="25.0" prefWidth="257.0" />
             <Label layoutX="68.0" layoutY="253.0" prefHeight="25.0" prefWidth="124.0" text="RUT AYUDANTE" />
-            <TextField layoutX="235.0" layoutY="255.0" prefHeight="25.0" prefWidth="257.0" />
+            <TextField fx:id="rutAyudante" layoutX="235.0" layoutY="255.0" onAction="#crearAyudantia" prefHeight="25.0" prefWidth="257.0" />
+            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" onAction="#close" text="CANCELAR" />
+            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" onAction="#crearAyudantia" text="ACEPTAR" />
          </children>
       </Pane>
    </children>

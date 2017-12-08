@@ -86,6 +86,7 @@ public class DatabaseConector {
             statement.executeUpdate(update);
             return true;
         } catch (SQLException ex){
+            ex.printStackTrace();
             return false;
         }
     }

@@ -1,6 +1,6 @@
 package gui;
 
-import controllers.CrearModuloController;
+import controllers.CrearAyudantiaController;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -17,50 +17,43 @@ import sql.Tables;
 
 /**
  * @author Pencho
- * @version 1.1, Last modification: 07-12-2017
+ * @version 1.1, Last modification: 08-12-2017
  */
 
-public class CrearModuloGUI extends Stage{
-    private ComboBox diasModulo;
-    private ComboBox bloquesModulo;
-    private ComboBox salasModulo;
+public class CrearAyudantiaGUI extends Stage{
+    private ComboBox horariosAyudantia;
+    private ComboBox diasAyudantia;
+    private ComboBox salasAyudantia;
     
-    public CrearModuloGUI(ModulosGUI gui){
+    
+    public CrearAyudantiaGUI (ModuloDetailsGUI gui){
         try {
-            //Get the fxml from the file.
-            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaEmergenteModulo.fxml"));
+            //Buscar el FXML
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/resources/VentanaEmergenteAyudantia.fxml"));
             
-            //Load the fxml
+            //Cargarlo
             Parent root = fxml.load();
             Scene scene = new Scene(root, 600, 400);
             
-            this.diasModulo = (ComboBox) scene.lookup("#diasModulo");
-            this.bloquesModulo = (ComboBox) scene.lookup("#bloquesModulo");
-            this.salasModulo = (ComboBox) scene.lookup("#salasModulo");
+            this.horariosAyudantia = (ComboBox) scene.lookup("#horariosAyudantia");
+            this.diasAyudantia = (ComboBox) scene.lookup("#diasAyudantia");
+            this.salasAyudantia = (ComboBox) scene.lookup("#salasAyudantia");
             
+            this.fillHorarios();
             this.fillDias();
-            this.fillBloques();
             this.fillSalas();
             
             super.setScene(scene);
             
-            //Set the ModulosGUI to refresh the list after the adding
-            ((CrearModuloController) fxml.getController()).setModulosGUI(gui);
+            //Settear el gui para refrescar la gui
+            ((CrearAyudantiaController) fxml.getController()).setGUI(gui);
+            
         } catch (IOException ex) {
-            Logger.getLogger(ModuloDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrearAyudantiaGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void fillDias() {
-        ObservableList<String> data = FXCollections.observableArrayList();
-        
-        data.addAll("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
-        
-        this.diasModulo.setItems(data);
-        this.diasModulo.getSelectionModel().selectFirst();
-    }
-
-    private void fillBloques() {
+    private void fillHorarios() {
         ObservableList<DataComboBox> data = FXCollections.observableArrayList();
         
         try {
@@ -68,8 +61,8 @@ public class CrearModuloGUI extends Stage{
             
             if (!result.isBeforeFirst()){
                 data.add(new DataComboBox(-1, "No hay bloques disponibles."));
-                this.bloquesModulo.setItems(data);
-                this.bloquesModulo.getSelectionModel().selectFirst();
+                this.horariosAyudantia.setItems(data);
+                this.horariosAyudantia.getSelectionModel().selectFirst();
                 return;
             }
             
@@ -84,9 +77,18 @@ public class CrearModuloGUI extends Stage{
             data.clear();
             data.add(new DataComboBox(-2, "Error al leer los horarios de la base de datos."));
         } finally {
-            this.bloquesModulo.setItems(data);
-            this.bloquesModulo.getSelectionModel().selectFirst();
+            this.horariosAyudantia.setItems(data);
+            this.horariosAyudantia.getSelectionModel().selectFirst();
         }   
+    }
+
+    private void fillDias() {
+        ObservableList<String> data = FXCollections.observableArrayList();
+        
+        data.addAll("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
+        
+        this.diasAyudantia.setItems(data);
+        this.diasAyudantia.getSelectionModel().selectFirst();
     }
 
     private void fillSalas() {
@@ -104,8 +106,8 @@ public class CrearModuloGUI extends Stage{
             
             if (!result.isBeforeFirst()){
                 data.add(new DataComboBox(-1, "No hay salas disponibles."));
-                this.salasModulo.setItems(data);
-                this.salasModulo.getSelectionModel().selectFirst();
+                this.salasAyudantia.setItems(data);
+                this.salasAyudantia.getSelectionModel().selectFirst();
                 return;
             }
             
@@ -120,8 +122,9 @@ public class CrearModuloGUI extends Stage{
             data.clear();
             data.add(new DataComboBox(-2, "Error al leer las salas de la base de datos."));
         } finally {
-            this.salasModulo.setItems(data);
-            this.salasModulo.getSelectionModel().selectFirst();
+            this.salasAyudantia.setItems(data);
+            this.salasAyudantia.getSelectionModel().selectFirst();
         }
     }
+
 }

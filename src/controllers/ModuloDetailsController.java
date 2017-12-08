@@ -5,39 +5,51 @@
  */
 package controllers;
 
+import gui.CrearAyudantiaGUI;
+import gui.CrearEvaluacionGUI;
+import gui.ModuloDetailsGUI;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeTableView;
 
 /**
- *
- * @author Fernanda
+ * @author Fernanda, Pencho
+ * @version 1.1, Last modification: 08-12-2017
  */
+
 public class ModuloDetailsController implements Initializable {
 
-    @FXML
-    private TableView horario;
-    @FXML
-    private TableView evaluacion;
-    @FXML
-    private TableView alumno;
-    @FXML
-    private TreeTableView  modulo;
+    private ModuloDetailsGUI gui;
+    
+    @FXML private TableView horario;
+    @FXML private TableView evaluacion;
+    @FXML private TableView alumno;
+    @FXML private TreeTableView modulo;
     
     
-    private void handleButtonAction(ActionEvent event) {
-
+    @FXML private void crearAyudantia(){
+        CrearAyudantiaGUI crearAyudantia = new CrearAyudantiaGUI(gui);
+        crearAyudantia.show();
+    }
+    
+    @FXML private void crearTutoria(){
+        
+    }
+    
+    @FXML private void crearEvaluacion(){
+        CrearEvaluacionGUI crearEvaluacion = new CrearEvaluacionGUI(gui);
+        crearEvaluacion.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public void setGUI(ModuloDetailsGUI gui){
+        this.gui = gui;
     }
 }

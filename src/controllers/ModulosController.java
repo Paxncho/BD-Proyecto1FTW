@@ -4,6 +4,7 @@ import gui.CrearModuloGUI;
 import gui.ModuloDetailsGUI;
 import gui.ModulosGUI;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import sql.DatabaseConector;
+import sql.Tables;
 
 /**
  * @author Fernanda, Pencho
@@ -82,7 +85,21 @@ public class ModulosController implements Initializable, EventHandler  {
         
         String nombreModulo = (String) ((ObservableList)list.get(0)).get(0);
         
-        ModuloDetailsGUI details = new ModuloDetailsGUI();
+        int idModulo;
+        
+        try {
+            ResultSet result = DatabaseConector.getInstance().getTable(Tables.MODULO, "nombreModulo = \"" + nombreModulo + "\"");
+                        
+            if (result.isBeforeFirst()){
+                result.next();
+                idModulo = result.getInt(Tables.MODULO.getId());
+            } else
+                idModulo = 0;
+        } catch (Exception e){
+            idModulo = 0;
+        }
+        
+        ModuloDetailsGUI details = new ModuloDetailsGUI(idModulo);
         details.show();
         closeWindow(null);
     }

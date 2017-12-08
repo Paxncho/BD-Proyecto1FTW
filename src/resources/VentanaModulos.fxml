@@ -29,8 +29,8 @@
             </Button>
             <TableView fx:id="informacionModulos" layoutX="25.0" layoutY="45.0" onSort="#refreshList" prefHeight="273.0" prefWidth="352.0">
               <columns>
-                <TableColumn prefWidth="149.0" text="MODULO" />
-                <TableColumn minWidth="0.0" prefWidth="209.0" text="PROFESOR- ASISTENTE" />
+                <TableColumn fx:id="moduloCol" editable="false" prefWidth="149.0" sortable="false" text="MODULO" />
+                <TableColumn fx:id="profAsisCol" editable="false" minWidth="0.0" prefWidth="209.0" sortable="false" text="PROFESOR- ASISTENTE" />
               </columns>
             </TableView>
             <ScrollBar disable="true" layoutX="370.0" layoutY="45.0" orientation="VERTICAL" prefHeight="273.0" prefWidth="14.0" />
