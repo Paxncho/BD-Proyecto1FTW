@@ -203,7 +203,33 @@ public class ModuloDetailsGUI extends Stage{
     }
     
     public void fillAlumnos(){
+        ObservableList<ObservableList> data = FXCollections.observableArrayList();
         
+        try {
+            String query = "select * from " + Tables.ASISTENCIA_A_CLASES.getDatabaseName() + " c join " + Tables.ALUMNO.getDatabaseName() + " a on c." +
+                    Tables.ALUMNO.getId() + " = a." + Tables.ALUMNO.getId() + " order by a.ApellidoAlumno";
+                        
+            ResultSet result = DatabaseConector.getInstance().executeQuery(query);
+            
+            if (!result.isBeforeFirst())
+                return;
+            
+            int i = 1;
+            
+            while (result.next()){
+                ObservableList<String> row = FXCollections.observableArrayList();
+                
+                String alumno = result.getInt("MatriculaAlumno") + " - " + result.getString("NombreAlumno") + " " + result.getString("ApellidoAlumno");
+                
+                row.addAll(Integer.toString(i), alumno);
+                data.add(row);
+                i++;
+            }
+        } catch (Exception e){
+            
+        } finally {
+            this.alumnos.setItems(data);
+        }
     }
     
     public int getIdModulo(){
