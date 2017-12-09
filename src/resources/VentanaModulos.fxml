@@ -39,7 +39,7 @@
               </columns>
             </TableView>
             <ScrollBar layoutX="372.0" layoutY="92.0" orientation="VERTICAL" prefHeight="228.0" prefWidth="18.0" style="-fx-border-color: #66667B; -fx-background-color: #FFEFDC; -fx-border-width: 2;" />
-            <ListView fx:id="profileList" layoutX="-143.0" layoutY="103.0" prefHeight="215.0" prefWidth="114.0" style="-fx-border-color: #66667B;" stylesheets="@Ventanas.css" />
+            <ListView fx:id="profileList" layoutX="-143.0" layoutY="103.0" prefHeight="248.0" prefWidth="114.0" style="-fx-border-color: #66667B;" stylesheets="@Ventanas.css" />
          </children>
       </Pane>
       <Pane layoutX="23.0" layoutY="21.0" prefHeight="358.0" prefWidth="138.0" stylesheets="@Ventanas.css">
@@ -52,11 +52,6 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Button layoutX="20.0" layoutY="333.0" mnemonicParsing="false" onAction="#createModuloAction" prefHeight="18.0" prefWidth="40.0" style="-fx-background-color: #FFEFDC; -fx-border-color: #66667B;" text="Atras" textFill="#ffefdc">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Separator layoutX="159.0" layoutY="23.0" opacity="0.35" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />
