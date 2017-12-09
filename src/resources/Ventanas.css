@@ -1,0 +1,122 @@
+.background {
+    -fx-background-color: #1d1d1d;
+}
+
+.label {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill:  #FFEFDC;
+    -fx-opacity: 1;
+}
+
+.label-bright {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: #FFEFDC;
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: #FFEFDC;
+    -fx-opacity: 1;
+}
+
+.list-view {
+    -fx-base:  #FFEFDC;
+    -fx-control-inner-background:  #FFEFDC;
+    -fx-background-color: #FFEFDC;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 1;
+}
+.table-view {
+    -fx-base:  #FFEFDC;
+    -fx-control-inner-background:  #FFEFDC;
+    -fx-background-color: #FFEFDC;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 1;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-width: 2 2 2 2;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 10;
+    -fx-border-width: 2 2 2 2;
+    -fx-background-color: transparent;
+    -fx-border-color: 
+        transparent
+        transparent
+        derive(-fx-base, 10%) 
+        transparent;
+    -fx-border-insets: 0 1 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill:  #FFEFDC;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.split-pane {
+    -fx-padding: 1 0 0 0;
+}
+
+
+
+.menu-bar .label {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill:  #FFEFDC;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: #FFEFDC;
+}
+
+.text-field {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Century Gothic";
+}
+
+
+.button {
+    -fx-padding: 0 1 0 1;   
+    -fx-border-color:  #66667B;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 8pt;
+    -fx-text-fill:  #66667B;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color,30%);
+}

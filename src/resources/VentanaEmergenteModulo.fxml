@@ -4,26 +4,33 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearModuloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearModuloController">
    <children>
-      <Pane layoutX="29.0" layoutY="27.0" prefHeight="347.0" prefWidth="539.0">
+      <Pane layoutX="29.0" layoutY="64.0" prefHeight="299.0" prefWidth="539.0">
          <children>
-            <Label layoutX="68.0" layoutY="39.0" prefHeight="25.0" prefWidth="124.0" text="NOMBRE MODULO" />
+            <Label layoutX="68.0" layoutY="39.0" prefHeight="25.0" prefWidth="124.0" text="Nombre Modulo" />
             <TextField fx:id="nombreModulo" layoutX="235.0" layoutY="42.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="91.0" prefHeight="25.0" prefWidth="124.0" text="SEMESTRE MODULO" />
+            <Label layoutX="68.0" layoutY="91.0" prefHeight="25.0" prefWidth="124.0" text="Semestre Modulo" />
             <TextField fx:id="semestreModulo" layoutX="235.0" layoutY="94.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="147.0" prefHeight="25.0" prefWidth="132.0" text="DIA MODULO" />
+            <Label layoutX="68.0" layoutY="152.0" prefHeight="25.0" prefWidth="132.0" text="Día Modulo" />
             <ComboBox fx:id="diasModulo" layoutX="235.0" layoutY="150.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="205.0" prefHeight="25.0" prefWidth="124.0" text="BLOQUE MODULO" />
-            <ComboBox fx:id="bloquesModulo" layoutX="235.0" layoutY="208.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="255.0" prefHeight="25.0" prefWidth="113.0" text="SALA MODULO" />
+            <Label layoutX="68.0" layoutY="205.0" prefHeight="25.0" prefWidth="124.0" text="Bloque Modulo" />
+            <ComboBox fx:id="bloquesModulo" layoutX="235.0" layoutY="205.0" prefHeight="25.0" prefWidth="257.0" />
+            <Label layoutX="68.0" layoutY="255.0" prefHeight="25.0" prefWidth="113.0" text="Sala Modulo" />
             <ComboBox fx:id="salasModulo" layoutX="235.0" layoutY="258.0" prefHeight="25.0" prefWidth="257.0" />
-            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" onAction="#close" text="CANCELAR" />
-            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" onAction="#addModulo" text="ACEPTAR" />
+            <Button layoutX="344.0" layoutY="302.0" mnemonicParsing="false" onAction="#close" prefHeight="18.0" prefWidth="63.0" style="-fx-background-color: #FFEFDC;" text="Cancelar" />
+            <Button layoutX="442.0" layoutY="302.0" mnemonicParsing="false" onAction="#addModulo" prefHeight="18.0" prefWidth="55.0" style="-fx-background-color: #FFEFDC;" text="Aceptar" />
          </children>
       </Pane>
+      <ImageView fitHeight="113.0" fitWidth="257.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Imagen.JPG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

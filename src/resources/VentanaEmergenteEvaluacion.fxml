@@ -6,24 +6,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearEvaluacionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CrearEvaluacionController">
    <children>
-      <Pane layoutX="29.0" layoutY="27.0" prefHeight="347.0" prefWidth="539.0">
+      <Pane layoutX="29.0" layoutY="67.0" prefHeight="295.0" prefWidth="539.0">
          <children>
-            <Label layoutX="68.0" layoutY="41.0" text="NOMBRE EVALUACION" />
+            <Label layoutX="68.0" layoutY="41.0" text="Nombre Evaluación" />
             <TextField fx:id="nombreEvaluacion" layoutX="235.0" layoutY="39.0" onAction="#crearEvaluacion" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="80.0" prefHeight="25.0" prefWidth="124.0" text="FECHA" />
+            <Label layoutX="68.0" layoutY="80.0" prefHeight="25.0" prefWidth="124.0" text="Fecha" />
             <DatePicker fx:id="fechaEvaluacion" layoutX="235.0" layoutY="80.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="129.0" prefHeight="25.0" prefWidth="152.0" text="TIPO" />
-            <ComboBox fx:id="tipoEvaluacion" layoutX="235.0" layoutY="129.0" prefHeight="25.0" prefWidth="257.0" />
-            <Label layoutX="68.0" layoutY="182.0" prefHeight="25.0" prefWidth="124.0" text="CONTENIDO" />
-            <TextArea fx:id="contenidoEvaluacion" layoutX="235.0" layoutY="188.0" prefHeight="101.0" prefWidth="257.0" />
-            <Button layoutX="344.0" layoutY="308.0" mnemonicParsing="false" onAction="#close" text="CANCELAR" />
-            <Button layoutX="446.0" layoutY="308.0" mnemonicParsing="false" onAction="#crearEvaluacion" text="ACEPTAR" />
+            <Label layoutX="68.0" layoutY="122.0" prefHeight="25.0" prefWidth="152.0" text="Tipo" />
+            <ComboBox fx:id="tipoEvaluacion" layoutX="235.0" layoutY="122.0" prefHeight="25.0" prefWidth="257.0" />
+            <Label layoutX="68.0" layoutY="164.0" prefHeight="25.0" prefWidth="124.0" text="Contenido" />
+            <TextArea fx:id="contenidoEvaluacion" layoutX="235.0" layoutY="167.0" prefHeight="101.0" prefWidth="257.0" />
+            <Button layoutX="344.0" layoutY="294.0" mnemonicParsing="false" onAction="#close" prefHeight="18.0" prefWidth="68.0" style="-fx-background-color: #FFEFDC;" text="Cancelar" />
+            <Button layoutX="431.0" layoutY="294.0" mnemonicParsing="false" onAction="#crearEvaluacion" prefHeight="18.0" prefWidth="57.0" style="-fx-background-color: #FFEFDC;" text="Aceptar" />
          </children>
       </Pane>
+      <ImageView fitHeight="113.0" fitWidth="257.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Imagen.JPG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
