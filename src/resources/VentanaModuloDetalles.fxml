@@ -79,9 +79,9 @@
       </Pane>
       <Pane focusTraversable="true" prefHeight="386.0" prefWidth="582.0">
          <children>
-            <Button layoutX="445.0" layoutY="127.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Evaluación" />
-            <Button layoutX="339.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Ayudantia" />
-            <Button layoutX="467.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" style="-fx-background-color: #FFEFDC;" text="Agregar Tutoria" />
+            <Button layoutX="445.0" layoutY="127.0" mnemonicParsing="false" onAction="#crearEvaluacion" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Evaluación" />
+            <Button layoutX="339.0" layoutY="14.0" mnemonicParsing="false" onAction="#crearAyudantia" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Ayudantia" />
+            <Button layoutX="467.0" layoutY="14.0" mnemonicParsing="false" onAction="#crearTutoria" prefHeight="18.0" prefWidth="93.0" style="-fx-background-color: #FFEFDC;" text="Agregar Tutoria" />
             <Button layoutX="38.0" layoutY="372.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="39.0" style="-fx-background-color: #FFEFDC;" text="Atras">
                <font>
                   <Font size="10.0" />
