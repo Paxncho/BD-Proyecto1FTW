@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainLoginController">
    <children>
       <Pane prefHeight="130.0" prefWidth="600.0">
          <children>
@@ -33,19 +33,19 @@
                   <Font name="Century Gothic" size="18.0" />
                </font>
             </Label>
-            <PasswordField layoutX="260.0" layoutY="122.0" prefHeight="25.0" prefWidth="272.0" style="-fx-border-color: #66667B;" />
-            <TextField layoutX="260.0" layoutY="50.0" prefHeight="25.0" prefWidth="272.0" style="-fx-border-color: #66667B;" />
-            <Button cache="true" cacheHint="SCALE" layoutX="428.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #b71e74; -fx-border-color: #66667B; -fx-border-width: 2;" text="Aceptar" textFill="#ffefdc">
+            <TextField fx:id="userField" layoutX="260.0" layoutY="50.0" onAction="#loginAction" prefHeight="25.0" prefWidth="272.0" style="-fx-border-color: #66667B;" />
+            <PasswordField fx:id="passwordField" layoutX="260.0" layoutY="122.0" onAction="#loginAction" prefHeight="25.0" prefWidth="272.0" style="-fx-border-color: #66667B;" />
+            <Button fx:id="button" cache="true" cacheHint="SCALE" layoutX="428.0" layoutY="182.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #b71e74; -fx-border-color: #66667B; -fx-border-width: 2;" text="Aceptar" textFill="#ffefdc">
                <font>
                   <Font name="Century Gothic" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="259.0" layoutY="23.0" prefHeight="27.0" prefWidth="306.0" text="El nombre ingresado no es el correcto. Porfavor intente nuevamente." textFill="#b71e74" visible="false">
+            <Label fx:id="nombreErroneo" layoutX="259.0" layoutY="23.0" prefHeight="27.0" prefWidth="306.0" text="El nombre ingresado no es el correcto. Por favor intente nuevamente." textFill="#b71e74" visible="false">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label layoutX="259.0" layoutY="95.0" prefHeight="27.0" prefWidth="324.0" text="La contraseña ingresada no es la correcta. Porfavor intente nuevamente." textFill="#b71e74" visible="false">
+            <Label fx:id="passErroneo" layoutX="259.0" layoutY="95.0" prefHeight="27.0" prefWidth="324.0" text="La contraseña ingresada no es la correcta. Por favor intente nuevamente." textFill="#b71e74" visible="false">
                <font>
                   <Font size="10.0" />
                </font>

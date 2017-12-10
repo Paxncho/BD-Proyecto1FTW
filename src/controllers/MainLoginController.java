@@ -25,24 +25,27 @@ public class MainLoginController implements Initializable  {
     
     @FXML private TextField userField;
     @FXML private PasswordField passwordField;
-    @FXML private Label label;
+    @FXML private Label nombreErroneo;
+    @FXML private Label passErroneo;
     @FXML private Button button;
     
     
     @FXML
     private void loginAction(ActionEvent event) {
+        nombreErroneo.setVisible(false);
+        passErroneo.setVisible(false);
+        
         switch(CheckUser()){
             case -2: //Error al conectar con la BD
-                label.setVisible(true);
-                label.setText("Error al conectar con la Base de Datos, checkee 'conexion.txt'\ny revise que los datos sean correctos.");
+                nombreErroneo.setVisible(true);
+                nombreErroneo.setText("Error al conectar con la Base de Datos, checkee 'conexion.txt'\ny revise que los datos sean correctos.");
                 break;
             case -1: //Pass Incorrecta
-                label.setVisible(true);
-                label.setText("Password incorrecto, intente nuevamente.");
+                passErroneo.setVisible(true);
                 break;
             case 0: //Usuario no encontrado
-                label.setVisible(true);
-                label.setText("Usuario no encontrado, intente nuevamente.");
+                nombreErroneo.setVisible(true);
+                nombreErroneo.setText("El nombre ingresado no es el correcto. Por favor intente nuevamente.");
                 break;
             case 1: //Conexión concreatada
                 ModulosGUI modulos = new ModulosGUI();
@@ -56,14 +59,14 @@ public class MainLoginController implements Initializable  {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        label.setVisible(false);
+        nombreErroneo.setVisible(false);
+        passErroneo.setVisible(false);
     }
     
     private int CheckUser(){
         String user = userField.getText();
         String pass = passwordField.getText();
-    
-        
+
         try {
             ResultSet users = DatabaseConector.getInstance().getTable(Tables.USUARIO, "RutUsuario = " + user);
             if (!users.isBeforeFirst())

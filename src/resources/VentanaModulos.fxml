@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulosController">
    <children>
-      <Pane layoutX="175.0" layoutY="21.0" prefHeight="358.0" prefWidth="403.0" stylesheets="@Ventanas.css">
+      <Pane layoutX="175.0" layoutY="21.0" prefHeight="358.0" prefWidth="403.0" stylesheets="@Ventanas.css" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="21.0">
          <children>
             <ImageView fitHeight="102.0" fitWidth="276.0" layoutY="-18.0" pickOnBounds="true">
                <image>

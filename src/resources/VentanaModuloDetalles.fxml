@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModuloDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b71e74;" stylesheets="@Ventanas.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModuloDetailsController">
    <children>
-      <Pane layoutX="29.0" layoutY="118.0" prefHeight="265.0" prefWidth="544.0">
+      <Pane focusTraversable="true" layoutX="29.0" layoutY="118.0" prefHeight="265.0" prefWidth="544.0">
          <children>
             <GridPane layoutY="31.0" prefHeight="234.0" prefWidth="529.0">
               <columnConstraints>
@@ -46,7 +46,7 @@
             <ScrollBar layoutX="528.0" layoutY="31.0" orientation="VERTICAL" prefHeight="77.0" prefWidth="18.0" style="-fx-border-color: #66667B; -fx-background-color: #FFEFDC; -fx-border-width: 2;" />
          </children>
       </Pane>
-      <Pane prefHeight="355.0" prefWidth="557.0">
+      <Pane focusTraversable="true" prefHeight="355.0" prefWidth="557.0">
          <children>
             <GridPane layoutX="242.0" layoutY="39.0" prefHeight="84.0" prefWidth="330.0">
               <columnConstraints>
@@ -77,7 +77,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane prefHeight="386.0" prefWidth="582.0">
+      <Pane focusTraversable="true" prefHeight="386.0" prefWidth="582.0">
          <children>
             <Button layoutX="445.0" layoutY="127.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Evaluación" />
             <Button layoutX="339.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: #FFEFDC;" text="Agregar Ayudantia" />
