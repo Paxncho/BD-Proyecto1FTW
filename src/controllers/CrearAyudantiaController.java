@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sql.DatabaseConector;
@@ -26,6 +27,7 @@ public class CrearAyudantiaController implements Initializable {
 
     private ModuloDetailsGUI detailsGui;
     
+    @FXML private Label errorLabel;
     @FXML private TextField nombreAyudantia;
     @FXML private TextField rutAyudante;
     @FXML private ComboBox horariosAyudantia;
@@ -33,17 +35,29 @@ public class CrearAyudantiaController implements Initializable {
     @FXML private ComboBox salasAyudantia;
     
     @FXML private void crearAyudantia(ActionEvent event){
+        errorLabel.setVisible(false);
+        
         //Revisar si no hay errores
         switch(checkData()){
             case -1: //Nombre vacio
+                errorLabel.setText("El nombre de la ayudantia no puede ser vacio.");
+                errorLabel.setVisible(true);
                 return;
             case -2: //Rut No numero
+                errorLabel.setText("El Rut debe ser un número");
+                errorLabel.setVisible(true);
                 return;
             case -3: //Rut no encontrado
+                errorLabel.setText("El rut ingresado no ha sido encontrado");
+                errorLabel.setVisible(true);
                 return;
             case -4: //Error con los horarios
+                errorLabel.setText("Error al leer el horario. No se puede crear la ayudantia.");
+                errorLabel.setVisible(true);
                 return;
             case -5: //Error con las salas
+                errorLabel.setText("Error al leer las salas. No se puede crear la ayudantia.");
+                errorLabel.setVisible(true);
                 return;
         }
         
@@ -142,6 +156,7 @@ public class CrearAyudantiaController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        errorLabel.setVisible(false);
     }
     
     public void setGUI(ModuloDetailsGUI gui){

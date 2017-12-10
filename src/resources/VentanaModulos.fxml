@@ -3,7 +3,6 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -27,24 +26,7 @@
                   <Font name="Century Gothic" size="10.0" />
                </font>
             </Button>
-            <Button layoutX="308.0" layoutY="336.0" mnemonicParsing="false" onAction="#createModuloAction" prefHeight="22.0" prefWidth="81.0" style="-fx-border-color: #66667B; -fx-background-color: #FFEFDC; -fx-border-width: 2;" text="Crear Modulo " textFill="#ffefdc">
-               <font>
-                  <Font name="Century Gothic" size="10.0" />
-               </font>
-            </Button>
-            <TableView fx:id="informacionModulos" layoutX="-1.0" layoutY="92.0" onSort="#refreshList" prefHeight="228.0" prefWidth="375.0" style="-fx-border-color: #66667B; -fx-border-width: 2;" stylesheets="@Ventanas.css">
-              <columns>
-                <TableColumn fx:id="moduloCol" editable="false" prefWidth="149.0" sortable="false" style="-fx-background-color: #b71e74; -fx-border-color: #66667B;" text="Modulo" />
-                <TableColumn fx:id="profAsisCol" editable="false" minWidth="0.0" prefWidth="209.0" sortable="false" style="-fx-background-color: #b71e74; -fx-border-color: #66667B;" text="Profesor/ Asistentes" />
-              </columns>
-            </TableView>
-            <ScrollBar layoutX="372.0" layoutY="92.0" orientation="VERTICAL" prefHeight="228.0" prefWidth="18.0" style="-fx-border-color: #66667B; -fx-background-color: #FFEFDC; -fx-border-width: 2;" />
-            <ListView fx:id="profileList" layoutX="-143.0" layoutY="103.0" prefHeight="248.0" prefWidth="114.0" style="-fx-border-color: #66667B;" stylesheets="@Ventanas.css" />
-         </children>
-      </Pane>
-      <Pane layoutX="23.0" layoutY="21.0" prefHeight="358.0" prefWidth="138.0" stylesheets="@Ventanas.css">
-         <children>
-            <ImageView fitHeight="81.0" fitWidth="81.0" focusTraversable="true" layoutX="27.0" layoutY="14.0" nodeOrientation="INHERIT" opacity="0.82" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50;">
+            <ImageView fitHeight="81.0" fitWidth="81.0" focusTraversable="true" layoutX="-125.0" nodeOrientation="INHERIT" opacity="0.82" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50;">
                <image>
                   <Image url="@../images/avatar.JPG" />
                </image>
@@ -52,8 +34,20 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
+            <Separator opacity="0.35" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />
+            <ListView fx:id="profileList" layoutX="-143.0" layoutY="103.0" prefHeight="248.0" prefWidth="114.0" style="-fx-border-color: #66667B;" stylesheets="@Ventanas.css" />
+            <TableView fx:id="informacionModulos" layoutX="20.0" layoutY="101.0" onSort="#refreshList" prefHeight="228.0" prefWidth="375.0" style="-fx-border-color: #66667B; -fx-border-width: 2;" stylesheets="@Ventanas.css">
+              <columns>
+                <TableColumn fx:id="moduloCol" editable="false" prefWidth="149.0" sortable="false" style="-fx-background-color: #b71e74; -fx-border-color: #66667B;" text="Modulo" />
+                <TableColumn fx:id="profAsisCol" editable="false" minWidth="0.0" prefWidth="209.0" sortable="false" style="-fx-background-color: #b71e74; -fx-border-color: #66667B;" text="Profesor/ Asistentes" />
+              </columns>
+            </TableView>
+            <Button layoutX="308.0" layoutY="336.0" mnemonicParsing="false" onAction="#createModuloAction" prefHeight="22.0" prefWidth="81.0" style="-fx-border-color: #66667B; -fx-background-color: #FFEFDC; -fx-border-width: 2;" text="Crear Modulo " textFill="#ffefdc">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <Separator layoutX="159.0" layoutY="23.0" opacity="0.35" orientation="VERTICAL" prefHeight="350.0" prefWidth="7.0" />
    </children>
 </AnchorPane>

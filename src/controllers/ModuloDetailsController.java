@@ -8,12 +8,14 @@ package controllers;
 import gui.CrearAyudantiaGUI;
 import gui.CrearEvaluacionGUI;
 import gui.ModuloDetailsGUI;
+import gui.ModulosGUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableView;
+import javafx.stage.Stage;
 
 /**
  * @author Fernanda, Pencho
@@ -27,7 +29,7 @@ public class ModuloDetailsController implements Initializable {
     @FXML private TableView horario;
     @FXML private TableView evaluacion;
     @FXML private TableView alumno;
-    @FXML private TreeTableView modulo;
+    @FXML private TableView modulo;
     
     
     @FXML private void crearAyudantia(){
@@ -42,6 +44,14 @@ public class ModuloDetailsController implements Initializable {
     @FXML private void crearEvaluacion(){
         CrearEvaluacionGUI crearEvaluacion = new CrearEvaluacionGUI(gui);
         crearEvaluacion.show();
+    }
+    
+    @FXML private void back(){
+        ModulosGUI modulos = new ModulosGUI();
+        modulos.show();
+
+        Stage stage = (Stage) horario.getScene().getWindow();
+        stage.close();
     }
 
     @Override

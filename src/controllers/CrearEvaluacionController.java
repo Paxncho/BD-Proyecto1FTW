@@ -11,8 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sql.DatabaseConector;
 import sql.Tables;
@@ -26,18 +26,19 @@ public class CrearEvaluacionController implements Initializable {
 
     private ModuloDetailsGUI detailsGui;
     
-    @FXML private TextField nombreEvaluacion;
+    @FXML private Label errorLabel;
     @FXML private DatePicker fechaEvaluacion;
     @FXML private ComboBox tipoEvaluacion;
     @FXML private TextArea contenidoEvaluacion;
     
     @FXML private void crearEvaluacion(ActionEvent event){
-
+        errorLabel.setVisible(false);
+        
         //Checkear si todo está en orden
         switch(checkData()){
-            case -1: //Nombre no ingresado
-                return;
             case -2: //Carga erronea de tipo de evaluaciones
+                errorLabel.setText("Error al cargar el tipo de evaluaciones.\n  La Evaluación no pudo ser creada");
+                errorLabel.setVisible(true);
                 return;
         }
         
@@ -65,10 +66,6 @@ public class CrearEvaluacionController implements Initializable {
     }
     
     private int checkData(){
-        String nombre = nombreEvaluacion.getText();
-//        if (nombre.length() < 1)
-//            return -1;
-        
         int id = ((DataComboBox) tipoEvaluacion.getSelectionModel().getSelectedItem()).getId();
         if (id < 0)
             return -2;
@@ -77,12 +74,13 @@ public class CrearEvaluacionController implements Initializable {
     }
     
     @FXML private void close(ActionEvent event){
-        Stage stage = (Stage) this.nombreEvaluacion.getScene().getWindow();
+        Stage stage = (Stage) this.tipoEvaluacion.getScene().getWindow();
         stage.close();
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        errorLabel.setVisible(false);
     }
 
     public void setGUI(ModuloDetailsGUI gui) {
